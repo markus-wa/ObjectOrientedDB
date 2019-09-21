@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectOrientedDB", "ObjectOrientedDB\ObjectOrientedDB.csproj", "{72DC36F1-D819-400C-AAC0-80DC98305BD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTests", "XUnitTests\XUnitTests.csproj", "{0AFE29E0-336F-4632-98E3-739337D1BD9D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72DC36F1-D819-400C-AAC0-80DC98305BD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72DC36F1-D819-400C-AAC0-80DC98305BD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72DC36F1-D819-400C-AAC0-80DC98305BD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72DC36F1-D819-400C-AAC0-80DC98305BD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AFE29E0-336F-4632-98E3-739337D1BD9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AFE29E0-336F-4632-98E3-739337D1BD9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AFE29E0-336F-4632-98E3-739337D1BD9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AFE29E0-336F-4632-98E3-739337D1BD9D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04533EB4-83DC-4E90-8944-1420D1493B3A}
+	EndGlobalSection
+EndGlobal
