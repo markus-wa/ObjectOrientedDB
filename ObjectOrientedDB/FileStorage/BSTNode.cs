@@ -1,14 +1,25 @@
-﻿namespace ObjectOrientedDB.FileStorage
+﻿using System;
+
+namespace ObjectOrientedDB.FileStorage
 {
     public struct BSTNode
     {
+        public Guid Guid;
+
+        public long DataOffset;
+
+        public long Size;
+
         public long Low;
         public long High;
 
-        public BSTNode(long Low, long High)
+        public BSTNode(Guid guid, long dataOffset, long size)
         {
-            this.Low = Low;
-            this.High = High;
+            this.Guid = guid;
+            this.DataOffset = dataOffset;
+            this.Size = size;
+            this.Low = 0;
+            this.High = 0;
         }
     }
 }

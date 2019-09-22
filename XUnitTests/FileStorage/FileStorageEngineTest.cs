@@ -61,51 +61,33 @@ namespace ObjectOrientedDB.FileStorage
         }
 
         [Fact]
-        public void StoreAddsIndexEntry()
-        {
-            using (var mmf = MemoryMappedFile.CreateNew("db", SIZE_1MB))
-            {
-                StorageEngine engine = new FileStorageEngine(mmf);
-                var guid = engine.Store(BitConverter.GetBytes(UInt64.MaxValue));
-
-                using (var indexAccessor = mmf.CreateViewAccessor(Marshal.SizeOf(typeof(Metadata)), Marshal.SizeOf(typeof(IndexEntry))))
-                {
-                    IndexEntry indexEntry;
-                    indexAccessor.Read(0, out indexEntry);
-                    Assert.Equal(guid, indexEntry.Guid());
-                    Assert.Equal(0, indexEntry.DataOffset);
-                    Assert.Equal(8, indexEntry.Size);
-                }
-            }
-        }
-
-        [Fact]
         public void StoreUpdatesBST()
         {
             using (var mmf = MemoryMappedFile.CreateNew("db", SIZE_1MB))
             {
                 byte i = 0;
-                StorageEngine engine = new FileStorageEngine(mmf, () => new Guid(1, 2, 3, 4, 5, 6, 6, 7, 8, 9, i++));
+                StorageEngine engine = new FileStorageEngine(mmf, () => new Guid(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, i++));
                 engine.Store(BitConverter.GetBytes(UInt64.MaxValue));
                 engine.Store(BitConverter.GetBytes(Int64.MinValue));
+                engine.Store(BitConverter.GetBytes(Int64.MaxValue));
 
-                var bstOffset = Marshal.SizeOf(typeof(Metadata)) + FileStorageEngine.DEFAULT_INDEX_SIZE * Marshal.SizeOf(typeof(IndexEntry));
+                var bstOffset = Marshal.SizeOf(typeof(Metadata));
                 var bstNodeSize = Marshal.SizeOf(typeof(BSTNode));
                 using (var bstAccessor = mmf.CreateViewAccessor(bstOffset, 3 * bstNodeSize))
                 {
                     // root
                     BSTNode bstNode;
                     bstAccessor.Read(0, out bstNode);
-                    Assert.Equal(1, bstNode.Low);
-                    Assert.Equal(2, bstNode.High);
-
-                    // high
-                    bstAccessor.Read(2 * bstNodeSize, out bstNode);
-                    Assert.Equal(1, bstNode.Low);
+                    Assert.Equal(0, bstNode.Low);
                     Assert.Equal(1, bstNode.High);
 
-                    // low
+                    // high
                     bstAccessor.Read(bstNodeSize, out bstNode);
+                    Assert.Equal(0, bstNode.Low);
+                    Assert.Equal(2, bstNode.High);
+
+                    // high high
+                    bstAccessor.Read(2 * bstNodeSize, out bstNode);
                     Assert.Equal(0, bstNode.Low);
                     Assert.Equal(0, bstNode.High);
                 }
@@ -121,12 +103,10 @@ namespace ObjectOrientedDB.FileStorage
                 var input = BitConverter.GetBytes(UInt64.MaxValue);
                 var guid = engine.Store(input);
 
-                var indexEntrySize = Marshal.SizeOf(typeof(IndexEntry));
-                var indexSize = FileStorageEngine.DEFAULT_INDEX_SIZE * indexEntrySize;
                 var bstNodeSize = Marshal.SizeOf(typeof(BSTNode));
-                var bstSize = 2 * FileStorageEngine.DEFAULT_INDEX_SIZE * bstNodeSize;
+                var bstSize = FileStorageEngine.DEFAULT_INDEX_SIZE * bstNodeSize;
                 var metadataSize = Marshal.SizeOf(typeof(Metadata));
-                var dataOffset = metadataSize + indexSize + bstSize;
+                var dataOffset = metadataSize + bstSize;
                 using (var dataAccessor = mmf.CreateViewAccessor(dataOffset, input.Length))
                 {
                     var stored = new byte[input.Length];
@@ -179,7 +159,7 @@ namespace ObjectOrientedDB.FileStorage
                 StorageEngine engine = new FileStorageEngine(mmf);
                 byte data = 1;
 
-                for (var i = 0; i < FileStorageEngine.DEFAULT_INDEX_SIZE - 10; i++)
+                for (var i = 0; i < FileStorageEngine.DEFAULT_INDEX_SIZE; i++)
                 {
                     var input = new byte[] { data++, data++, data++, data++ };
                     var output = engine.Read(engine.Store(input));

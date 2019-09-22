@@ -1,3 +1,4 @@
+using System;
 using Xunit;
 
 namespace ObjectOrientedDB.FileStorage
@@ -7,10 +8,13 @@ namespace ObjectOrientedDB.FileStorage
         [Fact]
         public void Test()
         {
-            var node = new BSTNode(1, 2);
+            var guid = Guid.NewGuid();
 
-            Assert.Equal(1, node.Low);
-            Assert.Equal(2, node.High);
+            var node = new BSTNode(guid, 1, 2);
+
+            Assert.Equal(guid, node.Guid);
+            Assert.Equal(1, node.DataOffset);
+            Assert.Equal(2, node.Size);
         }
     }
 }
