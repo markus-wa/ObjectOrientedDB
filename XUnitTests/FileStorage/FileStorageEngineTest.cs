@@ -1,6 +1,7 @@
 using System;
 using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace ObjectOrientedDB.FileStorage
@@ -35,7 +36,6 @@ namespace ObjectOrientedDB.FileStorage
                     Metadata metadata;
                     metadataAccessor.Read(0, out metadata);
                     Assert.Equal(64, metadata.Index.Size);
-                    Assert.Equal(0, metadata.Index.NextEntry);
                     Assert.Equal(0, metadata.Data.NextOffset);
                 }
             }
@@ -54,7 +54,7 @@ namespace ObjectOrientedDB.FileStorage
                     Metadata metadata;
                     metadataAccessor.Read(0, out metadata);
                     Assert.Equal(64, metadata.Index.Size);
-                    Assert.Equal(1, metadata.Index.NextEntry);
+                    Assert.Equal(1, metadata.Index.NextBSTNode);
                     Assert.Equal(8, metadata.Data.NextOffset);
                 }
             }
@@ -166,6 +166,64 @@ namespace ObjectOrientedDB.FileStorage
 
                     Assert.Equal(input, output);
                 }
+            }
+        }
+
+        [Fact]
+        public void Bench()
+        {
+            using (var mmf = MemoryMappedFile.CreateFromFile("db.data", System.IO.FileMode.Create, "db", SIZE_1MB * 1024))
+            {
+                var n = 1000 * 10;
+                var nThreads = 1; // multithreading is currently not supported
+                StorageEngine engine = new FileStorageEngine(mmf, indexSize: n * nThreads);
+                byte data = 1;
+
+                var input = new byte[] { data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,
+                        data++, data++, data++, data++, data++, data++, data++, data++,};
+
+                Task[] taskArray = new Task[nThreads];
+                for (int i = 0; i < taskArray.Length; i++)
+                {
+                    taskArray[i] = Task.Run(() =>
+                    {
+                        for (var j = 0; j < n; j++)
+                        {
+                            var output = engine.Read(engine.Store(input));
+
+                            Assert.Equal(input, output);
+                        }
+                    });
+                }
+                Task.WaitAll(taskArray);
             }
         }
     }

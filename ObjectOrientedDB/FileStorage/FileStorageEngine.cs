@@ -18,7 +18,7 @@ namespace ObjectOrientedDB.FileStorage
 
         public const long DEFAULT_INDEX_SIZE = 64;
 
-        public FileStorageEngine(MemoryMappedFile file, GuidProvider p = null)
+        public FileStorageEngine(MemoryMappedFile file, GuidProvider p = null, long indexSize = DEFAULT_INDEX_SIZE)
         {
             this.file = file;
             this.guidProvider = p ?? (() => Guid.NewGuid());
@@ -31,7 +31,7 @@ namespace ObjectOrientedDB.FileStorage
             // init metadata if non existent
             if (metadata.Index.Size == 0)
             {
-                metadata.Index.Size = DEFAULT_INDEX_SIZE;
+                metadata.Index.Size = indexSize;
                 metadataAccessor.Write(0, ref metadata);
             }
 
@@ -47,7 +47,6 @@ namespace ObjectOrientedDB.FileStorage
         public Guid Store(byte[] data)
         {
             // update metadata
-            var indexId = metadata.Index.NextEntry++;
             var dataOffset = metadata.Data.NextOffset;
             metadata.Data.NextOffset += data.Length;
             metadataAccessor.Write(0, ref metadata);
@@ -61,8 +60,8 @@ namespace ObjectOrientedDB.FileStorage
             // update BST
             var guid = guidProvider();
             var closestMatch = ClosestNode(guid);
-            var bstNode = closestMatch.Item1;
-            var bstNodeOffset = closestMatch.Item2;
+            var parentNode = closestMatch.Item1;
+            var parentNodeOffset = closestMatch.Item2;
 
             // TODO: not happy with this check
             if (metadata.Index.NextBSTNode == 0)
@@ -71,30 +70,30 @@ namespace ObjectOrientedDB.FileStorage
                 metadata.Index.NextBSTNode = 1;
                 metadataAccessor.Write(0, ref metadata);
 
-                bstNode.Guid = guid;
-                bstNode.DataOffset = dataOffset;
-                bstNode.Size = data.Length;
+                parentNode.Guid = guid;
+                parentNode.DataOffset = dataOffset;
+                parentNode.Size = data.Length;
             }
             else
             {
-                var newNodeId = metadata.Index.NextBSTNode;
+                // normal path
+                long newNodeId = metadata.Index.NextBSTNode;
+                metadata.Index.NextBSTNode++;
+                metadataAccessor.Write(0, ref metadata);
 
-                var compRes = guid.CompareTo(bstNode.Guid);
+                var compRes = guid.CompareTo(parentNode.Guid);
                 if (compRes < 0)
                 {
-                    bstNode.Low = newNodeId;
+                    parentNode.Low = newNodeId;
                 }
                 else if (compRes > 0)
                 {
-                    bstNode.High = newNodeId;
+                    parentNode.High = newNodeId;
                 }
                 else
                 {
                     throw new ArgumentException("guid already exists");
                 }
-
-                metadata.Index.NextBSTNode++;
-                metadataAccessor.Write(0, ref metadata);
 
                 var newNodeOffset = newNodeId * bstNodeSize;
                 using (var bstAccessor = GetBSTAccessor(bstPosition + newNodeOffset, bstNodeSize))
@@ -105,9 +104,10 @@ namespace ObjectOrientedDB.FileStorage
                 }
             }
 
-            using (var bstAccessor = GetBSTAccessor(bstPosition + bstNodeOffset, bstNodeSize))
+            // update parent
+            using (var bstAccessor = GetBSTAccessor(bstPosition + parentNodeOffset, bstNodeSize))
             {
-                bstAccessor.Write(0, ref bstNode);
+                bstAccessor.Write(0, ref parentNode);
             }
 
             return guid;
@@ -144,15 +144,15 @@ namespace ObjectOrientedDB.FileStorage
         private (BSTNode, long) ClosestNode(Guid guid)
         {
             BSTNode bstNode;
-            using (var bstAccessor = GetBSTAccessor(bstPosition, bstNodeSize))
-            {
-                // read root node
-                bstAccessor.Read(0, out bstNode);
-            }
-
             long bstNodeOffset = 0;
+
             while (true)
             {
+                using (var bstAccessor = GetBSTAccessor(bstPosition + bstNodeOffset, bstNodeSize))
+                {
+                    bstAccessor.Read(0, out bstNode);
+                }
+
                 var compRes = guid.CompareTo(bstNode.Guid);
                 long nextNodeId;
                 if (compRes < 0)
@@ -179,11 +179,6 @@ namespace ObjectOrientedDB.FileStorage
                 }
 
                 bstNodeOffset = nextNodeId * bstNodeSize;
-
-                using (var bstAccessor = GetBSTAccessor(bstPosition + bstNodeOffset, bstNodeSize))
-                {
-                    bstAccessor.Read(0, out bstNode);
-                }
             }
         }
     }
