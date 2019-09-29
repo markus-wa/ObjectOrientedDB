@@ -1,0 +1,25 @@
+@startuml
+participant Consumer
+participant ObjectDB
+participant StorageEngine
+participant BinarySearchTree
+participant Serializer
+
+Consumer -> ObjectDB ++: Find(GUID)
+
+ObjectDB -> StorageEngine ++: Find(GUID)
+
+StorageEngine -> BinarySearchTree ++: FindEntry(GUID)
+BinarySearchTree -> StorageEngine --: dataPosition
+
+StorageEngine -> StorageEngine: ReadData(dataPosition)
+
+StorageEngine -> ObjectDB --: byte[]
+
+
+ObjectDB  -> Serializer ++: Deserialize(byte[])
+Serializer -> ObjectDB --: Serializable
+
+ObjectDB -> Consumer --: Object
+
+@enduml
