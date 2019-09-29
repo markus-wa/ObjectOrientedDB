@@ -2,8 +2,8 @@
 participant Consumer
 participant ObjectDB
 participant Serializer
-participant Datastore
 participant Index
+participant Datastore
 
 Consumer -> ObjectDB ++: Update(GUID, Serializable)
 
