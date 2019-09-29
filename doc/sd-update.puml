@@ -2,28 +2,26 @@
 participant Consumer
 participant ObjectDB
 participant Serializer
-participant StorageEngine
-participant BinarySearchTree
+participant Datastore
+participant Index
 
 Consumer -> ObjectDB ++: Update(GUID, Serializable)
 
 ObjectDB  -> Serializer ++: Serialize(Serializable)
 Serializer -> ObjectDB --: byte[]
 
-ObjectDB -> StorageEngine ++: Update(GUID, byte[])
+ObjectDB -> Index ++: Find(GUID)
+Index -> ObjectDB --: oldDataPosition
 
-StorageEngine -> BinarySearchTree ++: FindEntry(GUID)
-BinarySearchTree -> StorageEngine --: oldDataPosition
+ObjectDB -> Datastore ++: Insert(byte[])
+Datastore -> ObjectDB --: newDataPosition
 
-StorageEngine -> StorageEngine: InsertData(byte[])
+ObjectDB -> Index ++: Update(GUID, newDataPosition)
+Index -> ObjectDB --
 
-StorageEngine -> BinarySearchTree ++: UpdateEntry(GUID, dataPosition)
-BinarySearchTree -> StorageEngine --
+ObjectDB -> Datastore ++: Delete(oldDataPosition)
+Datastore -> ObjectDB --
 
-StorageEngine -> StorageEngine: DeleteData(oldDataPosition)
-
-StorageEngine -> ObjectDB --: GUID
-
-ObjectDB -> Consumer --: GUID
+ObjectDB -> Consumer --
 
 @enduml
