@@ -1,0 +1,23 @@
+@startuml
+participant Consumer
+participant ObjectDB
+participant StorageEngine
+participant BinarySearchTree
+
+Consumer -> ObjectDB ++: Delete(GUID)
+
+ObjectDB -> StorageEngine ++: Delete(GUID)
+
+StorageEngine -> BinarySearchTree ++: FindEntry(GUID)
+BinarySearchTree -> StorageEngine --: oldDataPosition
+
+StorageEngine -> BinarySearchTree ++: DeleteEntry(GUID)
+BinarySearchTree -> StorageEngine --
+
+StorageEngine -> StorageEngine: DeleteData(oldDataPosition)
+
+StorageEngine -> ObjectDB --
+
+ObjectDB -> Consumer --
+
+@enduml
