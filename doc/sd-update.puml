@@ -16,7 +16,7 @@ Index -> ObjectDB --: oldDataPosition
 ObjectDB -> Datastore ++: Insert(byte[])
 Datastore -> ObjectDB --: newDataPosition
 
-ObjectDB -> Index ++: Update(GUID, newDataPosition)
+ObjectDB -> Index ++: Update(GUID, newDataPosition, newSize)
 Index -> ObjectDB --
 
 ObjectDB -> Datastore ++: Delete(oldDataPosition)
