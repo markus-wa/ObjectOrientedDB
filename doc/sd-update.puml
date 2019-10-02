@@ -2,6 +2,7 @@
 participant Consumer
 participant ObjectDB
 participant Serializer
+participant StorageEngine
 participant Index
 participant Datastore
 
@@ -10,17 +11,19 @@ Consumer -> ObjectDB ++: Update(GUID, Serializable)
 ObjectDB  -> Serializer ++: Serialize(Serializable)
 Serializer -> ObjectDB --: byte[]
 
-ObjectDB -> Index ++: Find(GUID)
-Index -> ObjectDB --: oldDataPosition
+ObjectDB -> StorageEngine ++: Update(GUID, byte[])
+StorageEngine -> Index ++: Find(GUID)
+Index -> StorageEngine --: oldDataPosition
 
-ObjectDB -> Datastore ++: Insert(byte[])
-Datastore -> ObjectDB --: newDataPosition
+StorageEngine -> Datastore ++: Insert(byte[])
+Datastore -> StorageEngine --: newDataPosition
 
-ObjectDB -> Index ++: Update(GUID, newDataPosition, newSize)
-Index -> ObjectDB --
+StorageEngine -> Index ++: Update(GUID, newDataPosition, newSize)
+Index -> StorageEngine --
 
-ObjectDB -> Datastore ++: Delete(oldDataPosition)
-Datastore -> ObjectDB --
+StorageEngine -> Datastore ++: Delete(oldDataPosition)
+Datastore -> StorageEngine --
+StorageEngine -> ObjectDB --
 
 ObjectDB -> Consumer --
 
