@@ -1,16 +1,19 @@
 @startuml
 participant Consumer
 participant ObjectDB
+participant StorageEngine
 participant Index
 participant Datastore
 
 Consumer -> ObjectDB ++: Delete(GUID)
 
-ObjectDB -> Index ++: Delete(GUID)
-Index -> ObjectDB --: oldDataPosition
+ObjectDB -> StorageEngine ++: Delete(GUID)
+StorageEngine -> Index ++: Delete(GUID)
+Index -> StorageEngine --: oldDataPosition
 
-ObjectDB -> Datastore ++: Delete(oldDataPosition)
-Datastore -> ObjectDB --
+StorageEngine -> Datastore ++: Delete(oldDataPosition)
+Datastore -> StorageEngine --
+StorageEngine -> ObjectDB --
 
 ObjectDB -> Consumer --
 
