@@ -1,17 +1,20 @@
 @startuml
 participant Consumer
 participant ObjectDB
+participant StorageEngine
 participant Index
 participant Datastore
 participant Serializer
 
-Consumer -> ObjectDB ++: Find(GUID)
+Consumer -> ObjectDB ++: Read(GUID)
 
-ObjectDB -> Index ++: Find(GUID)
-Index -> ObjectDB --: dataPosition
+ObjectDB -> StorageEngine ++: Read(GUID)
+StorageEngine -> Index ++: Find(GUID)
+Index -> StorageEngine --: dataPosition
 
-ObjectDB -> Datastore ++: Read(dataPosition)
-Datastore -> ObjectDB --: byte[]
+StorageEngine -> Datastore ++: Read(dataPosition)
+Datastore -> StorageEngine --: byte[]
+StorageEngine -> ObjectDB --: byte[]
 
 ObjectDB  -> Serializer ++: Deserialize(byte[])
 Serializer -> ObjectDB --: Object
