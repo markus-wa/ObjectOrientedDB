@@ -1,0 +1,91 @@
+@startuml
+
+' DB
+class ObjectDB {
+  GuidGenerator guidGenerator
+  StorageEngine storageEngine
+  Insert<T : Serializable>(T): Guid
+  Read<T : Serializable>(Guid): T
+  Update<T : Serializable>(Guid, T)
+  Delete(Guid)
+}
+
+GuidGenerator -* ObjectDB
+ObjectDB - Serializable
+ObjectDB *-- StorageEngine
+
+' GUID Generator
+interface GuidGenerator {
+    New(): Guid
+}
+
+' Serializer
+interface Serializable {
+  Serialize(): byte[]
+  Deserialize(byte[]): T
+}
+
+' StorageEngine
+interface StorageEngine {
+  Insert(Guid, byte[])
+  Read(Guid): byte[]
+  Update(Guid, byte[])
+  Delete(Guid)
+}
+
+class FileSystemStorageEngine {
+  Index index
+  Datastore datastore
+  Insert(Guid, byte[])
+  Read(Guid): byte[]
+  Update(Guid, byte[])
+  Delete(Guid)
+}
+
+StorageEngine <|-- FileSystemStorageEngine
+Index -* FileSystemStorageEngine
+FileSystemStorageEngine *- Datastore
+
+' Index
+class IndexEntry {
+  Guid guid
+  int dataPosition
+  int dataSize
+}
+
+interface Index {
+  Find(Guid): InexEntry
+  Insert(IndexEntry)
+  Update(IndexEntry)
+  Delete(Guid): IndexEntry
+}
+
+IndexEntry - FileSystemIndex
+
+class FileSystemIndex {
+  MemoryMappedFile file
+  Find(Guid): InexEntry
+  Insert(IndexEntry)
+  Update(IndexEntry)
+  Delete(Guid): IndexEntry
+}
+
+Index <|-- FileSystemIndex
+
+' Datastore
+interface Datastore {
+  Insert(byte[]) dataPosition
+  Read(dataPosition, size): byte[]
+  Delete(dataPosition, size)
+}
+
+class FileSystemDatastore {
+  MemoryMappedFile file
+  Insert(byte[]) dataPosition
+  Read(dataPosition, size): byte[]
+  Delete(dataPosition, size)
+}
+
+Datastore <|-- FileSystemDatastore
+
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+participant Consumer
+participant ObjectDB
+participant Serializable
+participant GuidGenerator
+participant StorageEngine
+participant Datastore
+participant Index
+
+Consumer -> ObjectDB ++: Save(Serializable)
+
+ObjectDB  -> Serializable ++: Serialize()
+Serializable -> ObjectDB --: byte[]
+
+ObjectDB -> GuidGenerator ++: NewGuid()
+
+GuidGenerator -> ObjectDB --: GUID
+
+ObjectDB -> StorageEngine ++: Insert(GUID, byte[])
+StorageEngine -> Datastore ++: Insert(byte[])
+Datastore -> StorageEngine --
+
+StorageEngine -> Index ++: Add(GUID, dataPosition, dataSize)
+Index -> StorageEngine --
+StorageEngine -> ObjectDB --
+
+ObjectDB -> Consumer --: GUID
+
+@enduml

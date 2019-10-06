@@ -1,0 +1,30 @@
+@startuml
+participant Consumer
+participant ObjectDB
+participant Serializer
+participant StorageEngine
+participant Index
+participant Datastore
+
+Consumer -> ObjectDB ++: Update(GUID, Serializable)
+
+ObjectDB  -> Serializer ++: Serialize(Serializable)
+Serializer -> ObjectDB --: byte[]
+
+ObjectDB -> StorageEngine ++: Update(GUID, byte[])
+StorageEngine -> Index ++: Find(GUID)
+Index -> StorageEngine --: oldDataPosition
+
+StorageEngine -> Datastore ++: Insert(byte[])
+Datastore -> StorageEngine --: newDataPosition
+
+StorageEngine -> Index ++: Update(GUID, newDataPosition, newSize)
+Index -> StorageEngine --
+
+StorageEngine -> Datastore ++: Delete(oldDataPosition)
+Datastore -> StorageEngine --
+StorageEngine -> ObjectDB --
+
+ObjectDB -> Consumer --
+
+@enduml

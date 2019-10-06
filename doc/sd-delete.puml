@@ -1,0 +1,20 @@
+@startuml
+participant Consumer
+participant ObjectDB
+participant StorageEngine
+participant Index
+participant Datastore
+
+Consumer -> ObjectDB ++: Delete(GUID)
+
+ObjectDB -> StorageEngine ++: Delete(GUID)
+StorageEngine -> Index ++: Delete(GUID)
+Index -> StorageEngine --: oldDataPosition
+
+StorageEngine -> Datastore ++: Delete(oldDataPosition)
+Datastore -> StorageEngine --
+StorageEngine -> ObjectDB --
+
+ObjectDB -> Consumer --
+
+@enduml

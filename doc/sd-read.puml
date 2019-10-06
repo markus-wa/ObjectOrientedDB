@@ -1,0 +1,24 @@
+@startuml
+participant Consumer
+participant ObjectDB
+participant StorageEngine
+participant Index
+participant Datastore
+participant Serializer
+
+Consumer -> ObjectDB ++: Read(GUID)
+
+ObjectDB -> StorageEngine ++: Read(GUID)
+StorageEngine -> Index ++: Find(GUID)
+Index -> StorageEngine --: dataPosition
+
+StorageEngine -> Datastore ++: Read(dataPosition)
+Datastore -> StorageEngine --: byte[]
+StorageEngine -> ObjectDB --: byte[]
+
+ObjectDB  -> Serializer ++: Deserialize(byte[])
+Serializer -> ObjectDB --: Object
+
+ObjectDB -> Consumer --: Object
+
+@enduml
