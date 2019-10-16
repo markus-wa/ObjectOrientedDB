@@ -2,6 +2,7 @@
 using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace ObjectOrientedDB.FileStorage
 {
@@ -18,7 +19,7 @@ namespace ObjectOrientedDB.FileStorage
 
         public const long DEFAULT_INDEX_SIZE = 64;
 
-        public FileStorageEngine(MemoryMappedFile indexFile, MemoryMappedFile dataFile, long indexSize = DEFAULT_INDEX_SIZE)
+        public FileStorageEngine(MemoryMappedFile indexFile, MemoryMappedFile dataFile)
         {
             this.indexFile = indexFile;
             this.dataFile = dataFile;
@@ -27,13 +28,6 @@ namespace ObjectOrientedDB.FileStorage
             var metadataSize = Marshal.SizeOf(typeof(Metadata));
             metadataAccessor = indexFile.CreateViewAccessor(0, metadataSize);
             metadataAccessor.Read(0, out metadata);
-
-            // init metadata if non existent
-            if (metadata.Index.Size == 0)
-            {
-                metadata.Index.Size = indexSize;
-                metadataAccessor.Write(0, ref metadata);
-            }
 
             // BST
             bstPosition = metadataSize;
@@ -49,11 +43,12 @@ namespace ObjectOrientedDB.FileStorage
             dataFile.Dispose();
         }
 
-        public static StorageEngine Create(string path, long size)
+        public static FileStorageEngine Create(string path, long dataBytes, long indexSize)
         {
+            var indexBytes = Marshal.SizeOf(typeof(Metadata)) + indexSize * Marshal.SizeOf(typeof(BSTNode));
             Directory.CreateDirectory(path);
-            var indexFile = CreateFile(path + "/index", size);
-            var dataFile = CreateFile(path + "/data", size);
+            var indexFile = CreateFile(path + "/index", indexBytes);
+            var dataFile = CreateFile(path + "/data", dataBytes);
             return new FileStorageEngine(indexFile, dataFile);
         }
 
@@ -62,7 +57,7 @@ namespace ObjectOrientedDB.FileStorage
             return MemoryMappedFile.CreateFromFile(path, FileMode.Create, path, size);
         }
 
-        public static StorageEngine Open(string path)
+        public static FileStorageEngine Open(string path)
         {
             var indexFile = OpenFile(path + "/index");
             var dataFile = OpenFile(path + "/data");
@@ -72,16 +67,6 @@ namespace ObjectOrientedDB.FileStorage
         private static MemoryMappedFile OpenFile(string path)
         {
             return MemoryMappedFile.CreateFromFile(path, FileMode.Open, path);
-        }
-
-        private MemoryMappedViewAccessor BSTAccessor(long position, long length)
-        {
-            return indexFile.CreateViewAccessor(bstPosition + position, length);
-        }
-
-        private MemoryMappedViewAccessor DataAccessor(long position, long length)
-        {
-            return dataFile.CreateViewAccessor(position, length);
         }
 
         public byte[] Read(Guid guid)
@@ -95,12 +80,12 @@ namespace ObjectOrientedDB.FileStorage
             }
 
             // read data
-            using (var dataAccessor = DataAccessor(bstNode.DataOffset, bstNode.Size))
+            var data = new byte[bstNode.Size];
+            using (var dataAccessor = dataFile.CreateViewAccessor(bstNode.DataOffset, data.Length))
             {
-                var data = new byte[bstNode.Size];
-                dataAccessor.ReadArray(0, data, 0, data.Length);
-                return data;
+                dataAccessor.ReadArray(bstNode.DataOffset, data, 0, data.Length);
             }
+            return data;
         }
 
         private (BSTNode, long) ClosestNode(Guid guid)
@@ -108,39 +93,39 @@ namespace ObjectOrientedDB.FileStorage
             BSTNode bstNode;
             long bstNodeOffset = 0;
 
-            while (true)
+            using (var indexAccessor = indexFile.CreateViewAccessor(bstPosition, 0))
             {
-                using (var bstAccessor = BSTAccessor(bstNodeOffset, bstNodeSize))
+                while (true)
                 {
-                    bstAccessor.Read(0, out bstNode);
-                }
+                    indexAccessor.Read(bstNodeOffset, out bstNode);
 
-                var compRes = guid.CompareTo(bstNode.Guid);
-                long nextNodeId;
-                if (compRes < 0)
-                {
-                    if (bstNode.Low == 0)
+                    var compRes = guid.CompareTo(bstNode.Guid);
+                    long nextNodeId;
+                    if (compRes < 0)
+                    {
+                        if (bstNode.Low == 0)
+                        {
+                            return (bstNode, bstNodeOffset);
+                        }
+
+                        nextNodeId = bstNode.Low;
+                    }
+                    else if (compRes > 0)
+                    {
+                        if (bstNode.High == 0)
+                        {
+                            return (bstNode, bstNodeOffset);
+                        }
+
+                        nextNodeId = bstNode.High;
+                    }
+                    else
                     {
                         return (bstNode, bstNodeOffset);
                     }
 
-                    nextNodeId = bstNode.Low;
+                    bstNodeOffset = nextNodeId * bstNodeSize;
                 }
-                else if (compRes > 0)
-                {
-                    if (bstNode.High == 0)
-                    {
-                        return (bstNode, bstNodeOffset);
-                    }
-
-                    nextNodeId = bstNode.High;
-                }
-                else
-                {
-                    return (bstNode, bstNodeOffset);
-                }
-
-                bstNodeOffset = nextNodeId * bstNodeSize;
             }
         }
 
@@ -151,62 +136,61 @@ namespace ObjectOrientedDB.FileStorage
             metadata.Data.NextOffset += data.Length;
             metadataAccessor.Write(0, ref metadata);
 
-            // save data
-            using (var dataAccessor = DataAccessor(dataOffset, data.Length))
+            using (var dataAccessor = dataFile.CreateViewAccessor(dataOffset, data.Length))
+            using (var indexAccessor = indexFile.CreateViewAccessor(bstPosition, 0))
             {
+                // save data
                 dataAccessor.WriteArray(0, data, 0, data.Length);
-            }
+                var flush = Task.Run(() => dataAccessor.Flush());
 
-            // update BST
-            var closestMatch = ClosestNode(guid);
-            var parentNode = closestMatch.Item1;
-            var parentNodeOffset = closestMatch.Item2;
+                // update BST
+                var closestMatch = ClosestNode(guid);
+                var parentNode = closestMatch.Item1;
+                var parentNodeOffset = closestMatch.Item2;
 
-            // TODO: not happy with this check
-            if (metadata.Index.NextBSTNode == 0)
-            {
-                // needed to handle root node / first entry correctly
-                metadata.Index.NextBSTNode = 1;
-                metadataAccessor.Write(0, ref metadata);
-
-                parentNode.Guid = guid;
-                parentNode.DataOffset = dataOffset;
-                parentNode.Size = data.Length;
-            }
-            else
-            {
-                // normal path
-                long newNodeId = metadata.Index.NextBSTNode;
-                metadata.Index.NextBSTNode++;
-                metadataAccessor.Write(0, ref metadata);
-
-                var compRes = guid.CompareTo(parentNode.Guid);
-                if (compRes < 0)
+                // TODO: not happy with this check
+                if (metadata.Index.NextBSTNode == 0)
                 {
-                    parentNode.Low = newNodeId;
-                }
-                else if (compRes > 0)
-                {
-                    parentNode.High = newNodeId;
+                    // needed to handle root node / first entry correctly
+                    metadata.Index.NextBSTNode = 1;
+                    metadataAccessor.Write(0, ref metadata);
+
+                    parentNode.Guid = guid;
+                    parentNode.DataOffset = dataOffset;
+                    parentNode.Size = data.Length;
                 }
                 else
                 {
-                    throw new ArgumentException("guid already exists");
-                }
+                    // normal path
+                    long newNodeId = metadata.Index.NextBSTNode;
+                    metadata.Index.NextBSTNode++;
+                    metadataAccessor.Write(0, ref metadata);
 
-                var newNodeOffset = newNodeId * bstNodeSize;
-                using (var bstAccessor = BSTAccessor(newNodeOffset, bstNodeSize))
-                {
+                    var compRes = guid.CompareTo(parentNode.Guid);
+                    if (compRes < 0)
+                    {
+                        parentNode.Low = newNodeId;
+                    }
+                    else if (compRes > 0)
+                    {
+                        parentNode.High = newNodeId;
+                    }
+                    else
+                    {
+                        throw new ArgumentException("guid already exists");
+                    }
+
                     // add node
+                    var newNodeOffset = newNodeId * bstNodeSize;
                     var node = new BSTNode(guid, dataOffset, data.Length);
-                    bstAccessor.Write(0, ref node);
+                    indexAccessor.Write(newNodeOffset, ref node);
                 }
-            }
 
-            // update parent
-            using (var bstAccessor = BSTAccessor(parentNodeOffset, bstNodeSize))
-            {
-                bstAccessor.Write(0, ref parentNode);
+                // update parent
+                indexAccessor.Write(parentNodeOffset, ref parentNode);
+                indexAccessor.Flush();
+                metadataAccessor.Flush();
+                flush.Wait();
             }
         }
 

@@ -7,7 +7,6 @@
 
         public struct IndexMetadata
         {
-            public long Size;
             public long NextBSTNode;
         }
 

@@ -18,7 +18,6 @@ namespace ObjectOrientedDB.FileStorage
             using (var metadataAccessor = indexFile.CreateViewAccessor(0, Marshal.SizeOf(typeof(Metadata))))
             {
                 metadataAccessor.Read(0, out Metadata metadata);
-                Assert.Equal(64, metadata.Index.Size);
                 Assert.Equal(0, metadata.Data.NextOffset);
             }
         }
@@ -39,7 +38,6 @@ namespace ObjectOrientedDB.FileStorage
                 using (var metadataAccessor = indexFile.CreateViewAccessor(0, Marshal.SizeOf(typeof(Metadata))))
                 {
                     metadataAccessor.Read(0, out Metadata metadata);
-                    Assert.Equal(64, metadata.Index.Size);
                     Assert.Equal(1, metadata.Index.NextBSTNode);
                     Assert.Equal(8, metadata.Data.NextOffset);
                 }
@@ -158,7 +156,7 @@ namespace ObjectOrientedDB.FileStorage
         {
             var n = 10 * 1000;
             var nThreads = 1; // multithreading is currently not supported
-            using (var engine = new FileStorageEngine(MemoryMappedFile.CreateNew("index", SIZE_1MB), MemoryMappedFile.CreateNew("data", 1024 * SIZE_1MB), n * nThreads))
+            using (var engine = FileStorageEngine.Create("db", 1024 * SIZE_1MB, n * nThreads))
             {
                 byte data = 1;
 

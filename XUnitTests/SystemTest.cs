@@ -9,7 +9,7 @@ namespace XUnitTests
 {
     public class SystemTest : IDisposable
     {
-        public readonly long SIZE_10G = 10L * 1024 * 1024 * 1024;
+        public readonly long SIZE_1G = 1L * 1024 * 1024 * 1024;
 
         public SystemTest()
         {
@@ -41,16 +41,6 @@ namespace XUnitTests
 
             Assert.True(File.Exists("dbs/t1/index"));
             Assert.True(File.Exists("dbs/t1/data"));
-        }
-
-        private ObjectDB<object> NewDB(string name)
-        {
-            return new ObjectDB<object>(FileStorageEngine.Create("dbs/" + name, SIZE_10G), new BinaryFormatterSerializer());
-        }
-
-        private ObjectDB<object> OpenDB(string name)
-        {
-            return new ObjectDB<object>(FileStorageEngine.Open("dbs/" + name), new BinaryFormatterSerializer());
         }
 
         [Fact]
@@ -118,6 +108,16 @@ namespace XUnitTests
 
                 Assert.Throws<RecordNotFoundException>(() => db.Read<Testdata>(guid));
             }
+        }
+
+        private ObjectDB<object> NewDB(string name)
+        {
+            return new ObjectDB<object>(FileStorageEngine.Create("dbs/" + name, SIZE_1G, 64), new BinaryFormatterSerializer());
+        }
+
+        private ObjectDB<object> OpenDB(string name)
+        {
+            return new ObjectDB<object>(FileStorageEngine.Open("dbs/" + name), new BinaryFormatterSerializer());
         }
 
     }
