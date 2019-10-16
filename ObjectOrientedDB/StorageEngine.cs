@@ -1,10 +1,12 @@
 ﻿using System;
 
-namespace ObjectOrientedDB.FileStorage
+namespace ObjectOrientedDB
 {
     public interface StorageEngine
     {
-        Guid Store(byte[] data);
         byte[] Read(Guid guid);
+        void Insert(Guid guid, byte[] data);
+        void Update(Guid guid, byte[] data);
+        void Delete(Guid guid);
     }
 }

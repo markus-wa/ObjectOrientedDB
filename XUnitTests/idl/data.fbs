@@ -1,0 +1,20 @@
+﻿namespace Testdata
+
+table Data_8b{
+  val1:int = 150;
+  val2:int = 250;
+}
+
+table Data_128b{
+  inner:[Data_8b];
+}
+
+table Data_1KB{
+  inner:[Data_128b];
+}
+
+table Data_1MB{
+  inner:[Data_1KB];
+}
+
+root_type Data_1MB;

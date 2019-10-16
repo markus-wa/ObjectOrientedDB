@@ -11,48 +11,34 @@ namespace ObjectOrientedDB.FileStorage
         const long SIZE_1MB = 1024 * 1024;
 
         [Fact]
-        public void StoreReturnsGuid()
+        public void CreateAddsMetadata()
         {
-            using (var mmf = MemoryMappedFile.CreateNew("db", SIZE_1MB))
+            using (var indexFile = MemoryMappedFile.CreateNew("index", SIZE_1MB))
+            using (new FileStorageEngine(indexFile, MemoryMappedFile.CreateNew("data", SIZE_1MB)))
+            using (var metadataAccessor = indexFile.CreateViewAccessor(0, Marshal.SizeOf(typeof(Metadata))))
             {
-                var expectedGuid = Guid.NewGuid();
-
-                StorageEngine engine = new FileStorageEngine(mmf, () => expectedGuid);
-                var guid = engine.Store(BitConverter.GetBytes(UInt64.MaxValue));
-
-                Assert.Equal(expectedGuid, guid);
+                metadataAccessor.Read(0, out Metadata metadata);
+                Assert.Equal(64, metadata.Index.Size);
+                Assert.Equal(0, metadata.Data.NextOffset);
             }
         }
 
-        [Fact]
-        public void CreateAddsMetadata()
+        private FileStorageEngine Create1MBEngine()
         {
-            using (var mmf = MemoryMappedFile.CreateNew("db", SIZE_1MB))
-            {
-                StorageEngine engine = new FileStorageEngine(mmf);
-
-                using (var metadataAccessor = mmf.CreateViewAccessor(0, Marshal.SizeOf(typeof(Metadata))))
-                {
-                    Metadata metadata;
-                    metadataAccessor.Read(0, out metadata);
-                    Assert.Equal(64, metadata.Index.Size);
-                    Assert.Equal(0, metadata.Data.NextOffset);
-                }
-            }
+            return new FileStorageEngine(MemoryMappedFile.CreateNew("index", SIZE_1MB), MemoryMappedFile.CreateNew("data", SIZE_1MB));
         }
 
         [Fact]
         public void StoreUpdatesMetadata()
         {
-            using (var mmf = MemoryMappedFile.CreateNew("db", SIZE_1MB))
+            using (var indexFile = MemoryMappedFile.CreateNew("index", SIZE_1MB))
+            using (var engine = new FileStorageEngine(indexFile, MemoryMappedFile.CreateNew("data", SIZE_1MB)))
             {
-                StorageEngine engine = new FileStorageEngine(mmf);
-                var guid = engine.Store(BitConverter.GetBytes(UInt64.MaxValue));
+                engine.Insert(Guid.NewGuid(), BitConverter.GetBytes(UInt64.MaxValue));
 
-                using (var metadataAccessor = mmf.CreateViewAccessor(0, Marshal.SizeOf(typeof(Metadata))))
+                using (var metadataAccessor = indexFile.CreateViewAccessor(0, Marshal.SizeOf(typeof(Metadata))))
                 {
-                    Metadata metadata;
-                    metadataAccessor.Read(0, out metadata);
+                    metadataAccessor.Read(0, out Metadata metadata);
                     Assert.Equal(64, metadata.Index.Size);
                     Assert.Equal(1, metadata.Index.NextBSTNode);
                     Assert.Equal(8, metadata.Data.NextOffset);
@@ -63,21 +49,21 @@ namespace ObjectOrientedDB.FileStorage
         [Fact]
         public void StoreUpdatesBST()
         {
-            using (var mmf = MemoryMappedFile.CreateNew("db", SIZE_1MB))
+            using (var indexFile = MemoryMappedFile.CreateNew("index", SIZE_1MB))
+            using (var engine = new FileStorageEngine(indexFile, MemoryMappedFile.CreateNew("data", SIZE_1MB)))
             {
                 byte i = 0;
-                StorageEngine engine = new FileStorageEngine(mmf, () => new Guid(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, i++));
-                engine.Store(BitConverter.GetBytes(UInt64.MaxValue));
-                engine.Store(BitConverter.GetBytes(Int64.MinValue));
-                engine.Store(BitConverter.GetBytes(Int64.MaxValue));
+                Func<Guid> guidGenerator = () => new Guid(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, i++);
+                engine.Insert(guidGenerator(), BitConverter.GetBytes(UInt64.MaxValue));
+                engine.Insert(guidGenerator(), BitConverter.GetBytes(Int64.MinValue));
+                engine.Insert(guidGenerator(), BitConverter.GetBytes(Int64.MaxValue));
 
                 var bstOffset = Marshal.SizeOf(typeof(Metadata));
                 var bstNodeSize = Marshal.SizeOf(typeof(BSTNode));
-                using (var bstAccessor = mmf.CreateViewAccessor(bstOffset, 3 * bstNodeSize))
+                using (var bstAccessor = indexFile.CreateViewAccessor(bstOffset, 3 * bstNodeSize))
                 {
                     // root
-                    BSTNode bstNode;
-                    bstAccessor.Read(0, out bstNode);
+                    bstAccessor.Read(0, out BSTNode bstNode);
                     Assert.Equal(0, bstNode.Low);
                     Assert.Equal(1, bstNode.High);
 
@@ -97,17 +83,13 @@ namespace ObjectOrientedDB.FileStorage
         [Fact]
         public void StoreSavesData()
         {
-            using (var mmf = MemoryMappedFile.CreateNew("db", SIZE_1MB))
+            using (var dataFile = MemoryMappedFile.CreateNew("data", SIZE_1MB))
+            using (var engine = new FileStorageEngine(MemoryMappedFile.CreateNew("index", SIZE_1MB), dataFile))
             {
-                StorageEngine engine = new FileStorageEngine(mmf);
                 var input = BitConverter.GetBytes(UInt64.MaxValue);
-                var guid = engine.Store(input);
+                engine.Insert(Guid.NewGuid(), input);
 
-                var bstNodeSize = Marshal.SizeOf(typeof(BSTNode));
-                var bstSize = FileStorageEngine.DEFAULT_INDEX_SIZE * bstNodeSize;
-                var metadataSize = Marshal.SizeOf(typeof(Metadata));
-                var dataOffset = metadataSize + bstSize;
-                using (var dataAccessor = mmf.CreateViewAccessor(dataOffset, input.Length))
+                using (var dataAccessor = dataFile.CreateViewAccessor(0, input.Length))
                 {
                     var stored = new byte[input.Length];
                     dataAccessor.ReadArray(0, stored, 0, stored.Length);
@@ -119,13 +101,13 @@ namespace ObjectOrientedDB.FileStorage
         [Fact]
         public void StoreReadSingle()
         {
-            using (var mmf = MemoryMappedFile.CreateNew("db", SIZE_1MB))
+            using (var dataFile = MemoryMappedFile.CreateNew("data", SIZE_1MB))
+            using (var engine = new FileStorageEngine(MemoryMappedFile.CreateNew("index", SIZE_1MB), dataFile))
             {
-                StorageEngine engine = new FileStorageEngine(mmf);
-                byte data = 1;
-
                 var input = new byte[] { 1, 2, 3, 4 };
-                var output = engine.Read(engine.Store(input));
+                var guid = Guid.NewGuid();
+                engine.Insert(guid, input);
+                var output = engine.Read(guid);
 
                 Assert.Equal(input, output);
             }
@@ -134,18 +116,19 @@ namespace ObjectOrientedDB.FileStorage
         [Fact]
         public void StoreReadTwo()
         {
-            using (var mmf = MemoryMappedFile.CreateNew("db", SIZE_1MB))
+            using (var engine = new FileStorageEngine(MemoryMappedFile.CreateNew("index", SIZE_1MB), MemoryMappedFile.CreateNew("data", SIZE_1MB)))
             {
-                StorageEngine engine = new FileStorageEngine(mmf);
-                byte data = 1;
-
                 var input = new byte[] { 1, 2, 3, 4 };
-                var output = engine.Read(engine.Store(input));
+                var guid = Guid.NewGuid();
+                engine.Insert(guid, input);
+                var output = engine.Read(guid);
 
                 Assert.Equal(input, output);
 
                 input = new byte[] { 5, 6, 7, 8 };
-                output = engine.Read(engine.Store(input));
+                guid = Guid.NewGuid();
+                engine.Insert(guid, input);
+                output = engine.Read(guid);
 
                 Assert.Equal(input, output);
             }
@@ -154,15 +137,16 @@ namespace ObjectOrientedDB.FileStorage
         [Fact]
         public void StoreReadMultiple()
         {
-            using (var mmf = MemoryMappedFile.CreateNew("db", SIZE_1MB))
+            using (var engine = new FileStorageEngine(MemoryMappedFile.CreateNew("index", SIZE_1MB), MemoryMappedFile.CreateNew("data", SIZE_1MB)))
             {
-                StorageEngine engine = new FileStorageEngine(mmf);
                 byte data = 1;
 
                 for (var i = 0; i < FileStorageEngine.DEFAULT_INDEX_SIZE; i++)
                 {
                     var input = new byte[] { data++, data++, data++, data++ };
-                    var output = engine.Read(engine.Store(input));
+                    var guid = Guid.NewGuid();
+                    engine.Insert(guid, input);
+                    var output = engine.Read(guid);
 
                     Assert.Equal(input, output);
                 }
@@ -172,11 +156,10 @@ namespace ObjectOrientedDB.FileStorage
         [Fact]
         public void Bench()
         {
-            using (var mmf = MemoryMappedFile.CreateFromFile("db.data", System.IO.FileMode.Create, "db", SIZE_1MB * 1024))
+            var n = 10 * 1000;
+            var nThreads = 1; // multithreading is currently not supported
+            using (var engine = new FileStorageEngine(MemoryMappedFile.CreateNew("index", SIZE_1MB), MemoryMappedFile.CreateNew("data", 1024 * SIZE_1MB), n * nThreads))
             {
-                var n = 1000 * 10;
-                var nThreads = 1; // multithreading is currently not supported
-                StorageEngine engine = new FileStorageEngine(mmf, indexSize: n * nThreads);
                 byte data = 1;
 
                 var input = new byte[] { data++, data++, data++, data++, data++, data++, data++, data++,
@@ -217,7 +200,9 @@ namespace ObjectOrientedDB.FileStorage
                     {
                         for (var j = 0; j < n; j++)
                         {
-                            var output = engine.Read(engine.Store(input));
+                            var guid = Guid.NewGuid();
+                            engine.Insert(guid, input);
+                            var output = engine.Read(guid);
 
                             Assert.Equal(input, output);
                         }
