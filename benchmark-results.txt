@@ -1,0 +1,77 @@
+  Benchmarks.dll                                                | Metric   | Unit | Iterations | Average | STDEV.S |     Min |     Max
+:------------------------------------------------------------- |:-------- |:----:|:----------:| -------:| -------:| -------:| -------:
+ Benchmarks.Benchmarks.Delete_100_At_0(dataIndex: 0)           | Duration | msec |    100     |  13.552 |   0.985 |  12.287 |  21.541
+ Benchmarks.Benchmarks.Delete_100_At_10_000(dataIndex: 0)      | Duration | msec |    100     |  18.262 |   7.835 |  13.931 |  86.805
+ Benchmarks.Benchmarks.Delete_100_At_100_000(dataIndex: 0)     | Duration | msec |    100     |  21.888 |   0.625 |  20.222 |  23.490
+ 
+ Benchmarks.Benchmarks.Delete_100_At_0(dataIndex: 1)           | Duration | msec |    100     |  13.509 |   0.560 |  12.159 |  15.851
+ Benchmarks.Benchmarks.Delete_100_At_10_000(dataIndex: 1)      | Duration | msec |    100     |  16.393 |   1.798 |  13.681 |  25.291
+ Benchmarks.Benchmarks.Delete_100_At_100_000(dataIndex: 1)     | Duration | msec |    100     |  21.968 |   0.674 |  19.968 |  23.837
+ 
+ Benchmarks.Benchmarks.Delete_100_At_0(dataIndex: 2)           | Duration | msec |    100     |  13.531 |   1.049 |  12.104 |  22.239
+ Benchmarks.Benchmarks.Delete_100_At_10_000(dataIndex: 2)      | Duration | msec |    100     |  18.278 |   2.554 |  13.776 |  28.598
+ Benchmarks.Benchmarks.Delete_100_At_100_000(dataIndex: 2)     | Duration | msec |    100     |  21.955 |   0.725 |  20.212 |  25.005
+ Benchmarks.Benchmarks.Delete_100_At_1_000_000(dataIndex: 2)   | Duration | msec |     68     |  47.542 |   1.937 |  45.468 |  53.445
+ 
+ Benchmarks.Benchmarks.Delete_100_At_0(dataIndex: 3)           | Duration | msec |     15     |  17.307 |  16.999 |  12.342 |  78.740
+ Benchmarks.Benchmarks.Delete_100_At_10_000(dataIndex: 3)      | Duration | msec |     14     |  16.271 |   3.701 |  13.619 |  27.303
+ 
+ 
+ 
+ Benchmarks.Benchmarks.Insert_100_At_0(dataIndex: 0)           | Duration | msec |    100     |  28.524 |   2.234 |  26.577 |  42.603
+ Benchmarks.Benchmarks.Insert_100_At_10_000(dataIndex: 0)      | Duration | msec |    100     |  30.054 |   1.349 |  26.884 |  34.996
+ Benchmarks.Benchmarks.Insert_100_At_100_000(dataIndex: 0)     | Duration | msec |    100     |  41.474 |   1.279 |  39.613 |  48.729
+ 
+ Benchmarks.Benchmarks.Insert_100_At_0(dataIndex: 1)           | Duration | msec |    100     |  30.512 |  14.181 |  26.047 | 156.028
+ Benchmarks.Benchmarks.Insert_100_At_10_000(dataIndex: 1)      | Duration | msec |    100     |  31.153 |   8.657 |  26.524 | 113.659
+ Benchmarks.Benchmarks.Insert_100_At_100_000(dataIndex: 1)     | Duration | msec |    100     |  41.431 |   1.152 |  39.639 |  45.685
+ 
+ Benchmarks.Benchmarks.Insert_100_At_0(dataIndex: 2)           | Duration | msec |    100     |  29.212 |   1.913 |  27.092 |  36.934
+ Benchmarks.Benchmarks.Insert_100_At_10_000(dataIndex: 2)      | Duration | msec |    100     |  30.938 |   1.784 |  27.906 |  37.934
+ Benchmarks.Benchmarks.Insert_100_At_100_000(dataIndex: 2)     | Duration | msec |    100     |  42.197 |   2.242 |  40.419 |  55.337
+ Benchmarks.Benchmarks.Insert_100_At_1_000_000(dataIndex: 2)   | Duration | msec |     90     | 112.667 |  24.657 |  97.555 | 224.513
+ 
+ Benchmarks.Benchmarks.Insert_100_At_0(dataIndex: 3)           | Duration | msec |     16     | 664.804 |  18.933 | 651.993 | 712.550
+ Benchmarks.Benchmarks.Insert_100_At_10_000(dataIndex: 3)      | Duration | msec |     15     | 670.609 |  27.969 | 654.691 | 767.525
+ 
+ 
+ 
+ Benchmarks.Benchmarks.Read_100_8b_At_0(dataIndex: 0)          | Duration | msec |    100     |   6.028 |   0.422 |   4.707 |   6.932
+ Benchmarks.Benchmarks.Read_100_8b_At_1_000(dataIndex: 0)      | Duration | msec |    100     |   6.205 |   0.355 |   5.420 |   7.098
+ Benchmarks.Benchmarks.Read_100_8b_At_10_000(dataIndex: 0)     | Duration | msec |    100     |   8.028 |   1.164 |   6.370 |  11.639
+ Benchmarks.Benchmarks.Read_100_8b_At_100_000(dataIndex: 0)    | Duration | msec |    100     |  14.258 |   0.624 |  12.592 |  16.551
+ 
+ Benchmarks.Benchmarks.Read_100_128b_At_0(dataIndex: 1)        | Duration | msec |    100     |   6.681 |   1.088 |   5.055 |  13.458
+ Benchmarks.Benchmarks.Read_100_128b_At_1_000(dataIndex: 1)    | Duration | msec |    100     |   6.226 |   0.421 |   5.503 |   8.208
+ Benchmarks.Benchmarks.Read_100_128b_At_10_000(dataIndex: 1)   | Duration | msec |    100     |   8.146 |   1.111 |   6.334 |  10.852
+ Benchmarks.Benchmarks.Read_100_128b_At_100_000(dataIndex: 1)  | Duration | msec |    100     |  16.107 |   1.822 |  14.048 |  21.550
+ 
+ Benchmarks.Benchmarks.Read_100_1KB_At_0(dataIndex: 2)         | Duration | msec |    100     |   6.464 |   0.596 |   5.404 |   9.655
+ Benchmarks.Benchmarks.Read_100_1KB_At_1_000(dataIndex: 2)     | Duration | msec |    100     |   6.535 |   0.355 |   5.761 |   7.847
+ Benchmarks.Benchmarks.Read_100_1KB_At_10_000(dataIndex: 2)    | Duration | msec |    100     |   8.368 |   1.018 |   6.647 |   9.880
+ Benchmarks.Benchmarks.Read_100_1KB_At_100_000(dataIndex: 2)   | Duration | msec |    100     |  14.592 |   0.590 |  13.059 |  16.009
+ Benchmarks.Benchmarks.Read_100_1KB_At_1_000_000(dataIndex: 2) | Duration | msec |     71     |  40.315 |   1.932 |  38.101 |  47.242
+ 
+ Benchmarks.Benchmarks.Read_100_1MB_At_0(dataIndex: 3)         | Duration | msec |     10     | 375.255 |   2.721 | 372.157 | 380.672
+ Benchmarks.Benchmarks.Read_100_1MB_At_1_000(dataIndex: 3)     | Duration | msec |     10     | 373.077 |   2.718 | 369.736 | 378.280
+ Benchmarks.Benchmarks.Read_100_1MB_At_10_000(dataIndex: 3)    | Duration | msec |     10     | 379.014 |   2.176 | 376.289 | 384.095
+ 
+ 
+ 
+ 
+ Benchmarks.Benchmarks.Update_100_At_0(dataIndex: 0)           | Duration | msec |    100     |  18.809 |   0.774 |  16.702 |  21.680
+ Benchmarks.Benchmarks.Update_100_At_10_000(dataIndex: 0)      | Duration | msec |    100     |  21.119 |   1.218 |  18.487 |  24.110
+ Benchmarks.Benchmarks.Update_100_At_100_000(dataIndex: 0)     | Duration | msec |    100     |  27.227 |   0.979 |  26.024 |  31.361
+ 
+ Benchmarks.Benchmarks.Update_100_At_0(dataIndex: 1)           | Duration | msec |    100     |  19.011 |   1.305 |  16.864 |  29.847
+ Benchmarks.Benchmarks.Update_100_At_10_000(dataIndex: 1)      | Duration | msec |    100     |  22.079 |   7.804 |  18.811 |  98.470
+ Benchmarks.Benchmarks.Update_100_At_100_000(dataIndex: 1)     | Duration | msec |    100     |  27.304 |   0.931 |  26.008 |  30.965
+ 
+ Benchmarks.Benchmarks.Update_100_At_0(dataIndex: 2)           | Duration | msec |    100     |  20.314 |   2.002 |  18.241 |  29.284
+ Benchmarks.Benchmarks.Update_100_At_10_000(dataIndex: 2)      | Duration | msec |    100     |  22.395 |   1.868 |  19.547 |  32.262
+ Benchmarks.Benchmarks.Update_100_At_100_000(dataIndex: 2)     | Duration | msec |    100     |  28.040 |   1.392 |  26.746 |  39.029
+ Benchmarks.Benchmarks.Update_100_At_1_000_000(dataIndex: 2)   | Duration | msec |     60     |  59.148 |  10.877 |  51.769 | 113.779
+ 
+ Benchmarks.Benchmarks.Update_100_At_0(dataIndex: 3)           | Duration | msec |     8      | 653.486 |   4.326 | 648.259 | 661.940
+ Benchmarks.Benchmarks.Update_100_At_10_000(dataIndex: 3)      | Duration | msec |     8      | 661.265 |   4.319 | 658.204 | 671.186
+ 
