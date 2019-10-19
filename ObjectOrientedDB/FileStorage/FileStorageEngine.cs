@@ -76,14 +76,19 @@ namespace ObjectOrientedDB.FileStorage
 
             if (!Equals(guid, bstNode.Guid))
             {
-                throw new ArgumentException("entry for guid not found");
+                throw new RecordNotFoundException("entry for guid not found");
+            }
+
+            if (bstNode.DataOffset < 0)
+            {
+                throw new RecordNotFoundException("entry deleted");
             }
 
             // read data
             var data = new byte[bstNode.Size];
             using (var dataAccessor = dataFile.CreateViewAccessor(bstNode.DataOffset, data.Length))
             {
-                dataAccessor.ReadArray(bstNode.DataOffset, data, 0, data.Length);
+                dataAccessor.ReadArray(0, data, 0, data.Length);
             }
             return data;
         }
@@ -100,27 +105,17 @@ namespace ObjectOrientedDB.FileStorage
                     indexAccessor.Read(bstNodeOffset, out bstNode);
 
                     var compRes = guid.CompareTo(bstNode.Guid);
-                    long nextNodeId;
-                    if (compRes < 0)
+                    if (compRes == 0)
                     {
-                        if (bstNode.Low == 0)
-                        {
-                            return (bstNode, bstNodeOffset);
-                        }
-
-                        nextNodeId = bstNode.Low;
+                        // exact match found
+                        return (bstNode, bstNodeOffset);
                     }
-                    else if (compRes > 0)
-                    {
-                        if (bstNode.High == 0)
-                        {
-                            return (bstNode, bstNodeOffset);
-                        }
 
-                        nextNodeId = bstNode.High;
-                    }
-                    else
+                    long nextNodeId = compRes < 0 ? bstNode.Low : bstNode.High;
+
+                    if (nextNodeId == 0)
                     {
+                        // insert point found
                         return (bstNode, bstNodeOffset);
                     }
 
@@ -131,29 +126,26 @@ namespace ObjectOrientedDB.FileStorage
 
         public void Insert(Guid guid, byte[] data)
         {
-            // update metadata
-            var dataOffset = metadata.Data.NextOffset;
-            metadata.Data.NextOffset += data.Length;
-            metadataAccessor.Write(0, ref metadata);
+            // save data
+            var insertDataResult = InsertData(data);
+            var dataOffset = insertDataResult.Item1;
+            var flushData = insertDataResult.Item2;
 
-            using (var dataAccessor = dataFile.CreateViewAccessor(dataOffset, data.Length))
             using (var indexAccessor = indexFile.CreateViewAccessor(bstPosition, 0))
             {
-                // save data
-                dataAccessor.WriteArray(0, data, 0, data.Length);
-                var flush = Task.Run(() => dataAccessor.Flush());
-
                 // update BST
                 var closestMatch = ClosestNode(guid);
                 var parentNode = closestMatch.Item1;
                 var parentNodeOffset = closestMatch.Item2;
 
+                Task flushMetadata;
                 // TODO: not happy with this check
                 if (metadata.Index.NextBSTNode == 0)
                 {
                     // needed to handle root node / first entry correctly
                     metadata.Index.NextBSTNode = 1;
                     metadataAccessor.Write(0, ref metadata);
+                    flushMetadata = Task.Run(() => metadataAccessor.Flush());
 
                     parentNode.Guid = guid;
                     parentNode.DataOffset = dataOffset;
@@ -165,6 +157,7 @@ namespace ObjectOrientedDB.FileStorage
                     long newNodeId = metadata.Index.NextBSTNode;
                     metadata.Index.NextBSTNode++;
                     metadataAccessor.Write(0, ref metadata);
+                    flushMetadata = Task.Run(() => metadataAccessor.Flush());
 
                     var compRes = guid.CompareTo(parentNode.Guid);
                     if (compRes < 0)
@@ -189,19 +182,66 @@ namespace ObjectOrientedDB.FileStorage
                 // update parent
                 indexAccessor.Write(parentNodeOffset, ref parentNode);
                 indexAccessor.Flush();
-                metadataAccessor.Flush();
-                flush.Wait();
+                flushMetadata.Wait();
             }
+
+            flushData.Wait();
         }
 
         public void Update(Guid guid, byte[] data)
         {
-            throw new NotImplementedException();
+            var insertDataResult = InsertData(data);
+            var newDataOffset = insertDataResult.Item1;
+            var flushDataTask = insertDataResult.Item2;
+
+            UpdateIndex(guid, newDataOffset);
+            flushDataTask.Wait();
+        }
+
+        private (long, Task) InsertData(byte[] data)
+        {
+            // update metadata
+            var dataOffset = metadata.Data.NextOffset;
+            metadata.Data.NextOffset += data.Length;
+            metadataAccessor.Write(0, ref metadata);
+
+            // save data
+            var dataAccessor = dataFile.CreateViewAccessor(dataOffset, data.Length);
+            dataAccessor.WriteArray(0, data, 0, data.Length);
+
+            // async flush task
+            var flushData = Task.Run(() =>
+            {
+                dataAccessor.Flush();
+                dataAccessor.Dispose();
+            });
+
+            return (dataOffset, flushData);
         }
 
         public void Delete(Guid guid)
         {
-            throw new NotImplementedException();
+            // DataOffset -1 = deleted
+            UpdateIndex(guid, -1);
+        }
+
+        private void UpdateIndex(Guid guid, long dataOffset)
+        {
+            var closestMatch = ClosestNode(guid);
+            var bstNode = closestMatch.Item1;
+            var offset = closestMatch.Item2;
+
+            if (!Equals(guid, bstNode.Guid))
+            {
+                throw new RecordNotFoundException("entry for guid not found");
+            }
+
+            bstNode.DataOffset = dataOffset;
+
+            using (var indexAccessor = indexFile.CreateViewAccessor(bstPosition + offset, 0))
+            {
+                indexAccessor.Write(0, ref bstNode);
+            }
         }
 
     }

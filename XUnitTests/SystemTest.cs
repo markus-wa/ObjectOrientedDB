@@ -90,7 +90,7 @@ namespace XUnitTests
                 db.Update(guid, original);
             }
 
-            using (var db = NewDB("t5"))
+            using (var db = OpenDB("t5"))
             {
                 Testdata read = db.Read<Testdata>(guid);
 
@@ -106,7 +106,8 @@ namespace XUnitTests
                 var guid = db.Insert(new Testdata(1));
                 db.Delete(guid);
 
-                Assert.Throws<RecordNotFoundException>(() => db.Read<Testdata>(guid));
+                var ex = Assert.Throws<RecordNotFoundException>(() => db.Read<Testdata>(guid));
+                ex.Message.Should().BeEquivalentTo("entry deleted");
             }
         }
 
