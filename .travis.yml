@@ -8,13 +8,24 @@ git:
   depth: false
 
 script:
-- dotnet build
+- dotnet build -c Release
 
 deploy:
-  provider: pages
+- provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   local-dir: ObjectOrientedDB/_site
   keep_history: true
   on:
     branch: master
+- provider: script
+  skip_cleanup: true
+  script: bin/deploy.sh $TRAVIS_TAG $NUGET_SOURCE $NUGET_API_KEY
+  on:
+    tags: true
+- provider: releases
+  api_key: $GITHUB_TOKEN
+  file: ObjectOrientedDB/bin/Release/netstandard2.0/ObjectOrientedDB.dll
+  skip_cleanup: true
+  on:
+    tags: true
