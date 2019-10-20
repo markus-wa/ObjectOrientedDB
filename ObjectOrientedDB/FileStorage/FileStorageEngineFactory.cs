@@ -4,15 +4,19 @@ using System.Runtime.InteropServices;
 
 namespace ObjectOrientedDB.FileStorage
 {
+    /// <summary>
+    /// <para>Factory class for FileStorageEngine.</para>
+    /// <para>Used to create (and open existing) databses as FileStorageEngine instances.</para>
+    /// </summary>
     public class FileStorageEngineFactory
     {
         public static FileStorageEngine Create(string path, long dataBytes, long indexSize)
         {
-            var indexBytes = Marshal.SizeOf(typeof(Index.Metadata)) + indexSize * Marshal.SizeOf(typeof(BSTNode));
+            var indexBytes = Marshal.SizeOf(typeof(Index.Metadata)) + indexSize * Marshal.SizeOf(typeof(IndexEntry));
             Directory.CreateDirectory(path);
             var indexFile = CreateFile(path + "/index", indexBytes);
             var dataFile = CreateFile(path + "/data", dataBytes);
-            return new FileStorageEngine(new Index(indexFile), new Datastore(dataFile));
+            return NewInstance(indexFile, dataFile);
         }
 
         private static MemoryMappedFile CreateFile(string path, long size)
@@ -24,12 +28,17 @@ namespace ObjectOrientedDB.FileStorage
         {
             var indexFile = OpenFile(path + "/index");
             var dataFile = OpenFile(path + "/data");
-            return new FileStorageEngine(new Index(indexFile), new Datastore(dataFile));
+            return NewInstance(indexFile, dataFile);
         }
 
         private static MemoryMappedFile OpenFile(string path)
         {
             return MemoryMappedFile.CreateFromFile(path, FileMode.Open, path);
+        }
+
+        internal static FileStorageEngine NewInstance(MemoryMappedFile indexFile, MemoryMappedFile dataFile)
+        {
+            return new FileStorageEngine(new Index(indexFile), new Datastore(dataFile));
         }
     }
 }

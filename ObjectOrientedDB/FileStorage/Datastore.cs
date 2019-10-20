@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedDB.FileStorage
 {
-    public interface IDatastore
+    interface IDatastore
     {
         byte[] Read(long dataPosition, long dataSize);
         (long, Task) Insert(byte[] data);
@@ -53,6 +53,7 @@ namespace ObjectOrientedDB.FileStorage
             // in the future we can try to re-use the space maybe
         }
 
+        // O(1)
         public (long, Task) Insert(byte[] data)
         {
             // update metadata
@@ -76,14 +77,15 @@ namespace ObjectOrientedDB.FileStorage
             return (dataOffset, flushAll);
         }
 
+        // O(1)
         public byte[] Read(long dataPosition, long dataSize)
         {
-            var data = new byte[dataSize];
-            using (var dataAccessor = file.CreateViewAccessor(dataPosition, data.Length))
+            using (var dataAccessor = file.CreateViewAccessor(dataPosition, dataSize))
             {
+                var data = new byte[dataSize];
                 dataAccessor.ReadArray(0, data, 0, data.Length);
+                return data;
             }
-            return data;
         }
     }
 }

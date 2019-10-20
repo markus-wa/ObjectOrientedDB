@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ObjectOrientedDB.FileStorage
 {
-    public interface IIndex
+    interface IIndex
     {
-        BSTNode Find(Guid guid);
+        IndexEntry Find(Guid guid);
         Task Insert(Guid guid, long dataOffset, long dataSize);
         void Update(Guid guid, long newDataOffset);
-        BSTNode Delete(Guid guid);
+        IndexEntry Delete(Guid guid);
     }
 
     class Index : IIndex, IDisposable
@@ -39,7 +37,7 @@ namespace ObjectOrientedDB.FileStorage
 
             // BST
             bstPosition = metadataSize;
-            bstNodeSize = Marshal.SizeOf(typeof(BSTNode));
+            bstNodeSize = Marshal.SizeOf(typeof(IndexEntry));
         }
 
         public void Dispose()
@@ -48,9 +46,9 @@ namespace ObjectOrientedDB.FileStorage
             file.Dispose();
         }
 
-        public BSTNode Find(Guid guid)
+        public IndexEntry Find(Guid guid)
         {
-            BSTNode bstNode = ClosestNode(guid).Item1;
+            IndexEntry bstNode = ClosestNode(guid).Item1;
 
             if (!Equals(guid, bstNode.Guid))
             {
@@ -64,9 +62,11 @@ namespace ObjectOrientedDB.FileStorage
             return bstNode;
         }
 
-        private (BSTNode, long) ClosestNode(Guid guid)
+        // avg: O(log n)
+        // worst: O(n)
+        private (IndexEntry, long) ClosestNode(Guid guid)
         {
-            BSTNode bstNode;
+            IndexEntry bstNode;
             long bstNodeOffset = 0;
 
             using (var indexAccessor = file.CreateViewAccessor(bstPosition, 0))
@@ -141,7 +141,7 @@ namespace ObjectOrientedDB.FileStorage
 
                     // add node
                     var newNodeOffset = newNodeId * bstNodeSize;
-                    var node = new BSTNode(guid, dataOffset, dataSize);
+                    var node = new IndexEntry(guid, dataOffset, dataSize);
                     indexAccessor.Write(newNodeOffset, ref node);
                 }
 
@@ -161,13 +161,13 @@ namespace ObjectOrientedDB.FileStorage
             UpdateInternal(guid, newDataOffset);
         }
 
-        public BSTNode Delete(Guid guid)
+        public IndexEntry Delete(Guid guid)
         {
             // DataOffset -1 = deleted
             return UpdateInternal(guid, -1);
         }
 
-        private BSTNode UpdateInternal(Guid guid, long newDataOffset)
+        private IndexEntry UpdateInternal(Guid guid, long newDataOffset)
         {
             var closestMatch = ClosestNode(guid);
             var bstNode = closestMatch.Item1;

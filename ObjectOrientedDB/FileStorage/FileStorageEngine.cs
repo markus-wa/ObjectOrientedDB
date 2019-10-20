@@ -3,6 +3,9 @@ using System.IO.MemoryMappedFiles;
 
 namespace ObjectOrientedDB.FileStorage
 {
+    /// <summary>
+    /// <para>A StorageEngine implementation which uses file-based storage with memory-mapped files.</para>
+    /// </summary>
     public class FileStorageEngine : StorageEngine, IDisposable
     {
         private readonly IIndex index;
@@ -10,16 +13,10 @@ namespace ObjectOrientedDB.FileStorage
 
         public const long DEFAULT_INDEX_SIZE = 64;
 
-        public FileStorageEngine(IIndex index, IDatastore datastore)
+        internal FileStorageEngine(IIndex index, IDatastore datastore)
         {
             this.index = index;
             this.datastore = datastore;
-        }
-
-        public FileStorageEngine(MemoryMappedFile indexFile, MemoryMappedFile dataFile)
-        {
-            this.index = new Index(indexFile);
-            this.datastore = new Datastore(dataFile);
         }
 
         public void Dispose()
@@ -30,6 +27,7 @@ namespace ObjectOrientedDB.FileStorage
                 ((IDisposable)datastore).Dispose();
         }
 
+        /// <inheritdoc />
         public byte[] Read(Guid guid)
         {
             var indexEntry = index.Find(guid);
@@ -37,6 +35,7 @@ namespace ObjectOrientedDB.FileStorage
             return data;
         }
 
+        /// <inheritdoc />
         public void Insert(Guid guid, byte[] data)
         {
             // save data
@@ -49,6 +48,7 @@ namespace ObjectOrientedDB.FileStorage
             flushData.Wait();
         }
 
+        /// <inheritdoc />
         public void Update(Guid guid, byte[] data)
         {
 
@@ -60,6 +60,7 @@ namespace ObjectOrientedDB.FileStorage
             flushDataTask.Wait();
         }
 
+        /// <inheritdoc />
         public void Delete(Guid guid)
         {
             var deletedEntry = index.Delete(guid);

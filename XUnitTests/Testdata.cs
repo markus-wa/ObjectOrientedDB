@@ -1,5 +1,4 @@
-﻿using ObjectOrientedDB;
-using System;
+﻿using System;
 
 namespace XUnitTests
 {

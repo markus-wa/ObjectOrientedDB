@@ -17,7 +17,7 @@ namespace ObjectOrientedDB.FileStorage
         {
             using (var indexFile = MemoryMappedFile.CreateNew("index", SIZE_1MB))
             using (var dataFile = MemoryMappedFile.CreateNew("data", SIZE_1MB))
-            using (var engine = new FileStorageEngine(indexFile, dataFile))
+            using (var engine = FileStorageEngineFactory.NewInstance(indexFile, dataFile))
             {
                 engine.Insert(Guid.NewGuid(), BitConverter.GetBytes(UInt64.MaxValue));
 
@@ -39,7 +39,7 @@ namespace ObjectOrientedDB.FileStorage
         public void StoreUpdatesBST()
         {
             using (var indexFile = MemoryMappedFile.CreateNew("index", SIZE_1MB))
-            using (var engine = new FileStorageEngine(indexFile, MemoryMappedFile.CreateNew("data", SIZE_1MB)))
+            using (var engine = FileStorageEngineFactory.NewInstance(indexFile, MemoryMappedFile.CreateNew("data", SIZE_1MB)))
             {
                 byte i = 0;
                 Func<Guid> guidGenerator = () => new Guid(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, i++);
@@ -47,11 +47,11 @@ namespace ObjectOrientedDB.FileStorage
                 engine.Insert(guidGenerator(), BitConverter.GetBytes(Int64.MinValue));
                 engine.Insert(guidGenerator(), BitConverter.GetBytes(Int64.MaxValue));
 
-                var bstNodeSize = Marshal.SizeOf(typeof(BSTNode));
+                var bstNodeSize = Marshal.SizeOf(typeof(IndexEntry));
                 using (var bstAccessor = indexFile.CreateViewAccessor(INDEX_METADATA_SIZE, 3 * bstNodeSize))
                 {
                     // root
-                    bstAccessor.Read(0, out BSTNode bstNode);
+                    bstAccessor.Read(0, out IndexEntry bstNode);
                     Assert.Equal(0, bstNode.Low);
                     Assert.Equal(1, bstNode.High);
 
@@ -72,7 +72,7 @@ namespace ObjectOrientedDB.FileStorage
         public void StoreSavesData()
         {
             using (var dataFile = MemoryMappedFile.CreateNew("data", SIZE_1MB))
-            using (var engine = new FileStorageEngine(MemoryMappedFile.CreateNew("index", SIZE_1MB), dataFile))
+            using (var engine = FileStorageEngineFactory.NewInstance(MemoryMappedFile.CreateNew("index", SIZE_1MB), dataFile))
             {
                 var input = BitConverter.GetBytes(UInt64.MaxValue);
                 engine.Insert(Guid.NewGuid(), input);
@@ -90,7 +90,7 @@ namespace ObjectOrientedDB.FileStorage
         public void StoreReadSingle()
         {
             using (var dataFile = MemoryMappedFile.CreateNew("data", SIZE_1MB))
-            using (var engine = new FileStorageEngine(MemoryMappedFile.CreateNew("index", SIZE_1MB), dataFile))
+            using (var engine = FileStorageEngineFactory.NewInstance(MemoryMappedFile.CreateNew("index", SIZE_1MB), dataFile))
             {
                 var input = new byte[] { 1, 2, 3, 4 };
                 var guid = Guid.NewGuid();
@@ -104,7 +104,7 @@ namespace ObjectOrientedDB.FileStorage
         [Fact]
         public void StoreReadTwo()
         {
-            using (var engine = new FileStorageEngine(MemoryMappedFile.CreateNew("index", SIZE_1MB), MemoryMappedFile.CreateNew("data", SIZE_1MB)))
+            using (var engine = FileStorageEngineFactory.NewInstance(MemoryMappedFile.CreateNew("index", SIZE_1MB), MemoryMappedFile.CreateNew("data", SIZE_1MB)))
             {
                 var input = new byte[] { 1, 2, 3, 4 };
                 var guid = Guid.NewGuid();
@@ -125,7 +125,7 @@ namespace ObjectOrientedDB.FileStorage
         [Fact]
         public void StoreReadMultiple()
         {
-            using (var engine = new FileStorageEngine(MemoryMappedFile.CreateNew("index", SIZE_1MB), MemoryMappedFile.CreateNew("data", SIZE_1MB)))
+            using (var engine = FileStorageEngineFactory.NewInstance(MemoryMappedFile.CreateNew("index", SIZE_1MB), MemoryMappedFile.CreateNew("data", SIZE_1MB)))
             {
                 byte data = 1;
 
