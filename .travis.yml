@@ -1,7 +1,7 @@
 language: csharp
 dist: bionic
 sudo: true
-mono: none
+mono: latest
 dotnet: 2.2
 solution: ObjectOrientedDB.sln
 
