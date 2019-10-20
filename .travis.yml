@@ -7,20 +7,12 @@ solution: ObjectOrientedDB.sln
 git:
   depth: false
 
-before_script:
-- nuget install docfx.console -ExcludeVersion
-- export DOCFX='mono docfx.console/tools/docfx.exe'
-
 script:
 # Build
 - dotnet build
 
 # Test
 - dotnet test
-
-# Doc
-- $DOCFX metadata ObjectOrientedDB/docfx.json
-- $DOCFX build ObjectOrientedDB/docfx.json
 
 deploy:
   provider: pages
