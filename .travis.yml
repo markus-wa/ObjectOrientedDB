@@ -8,7 +8,7 @@ git:
   depth: false
 
 script:
-- dotnet build
+- dotnet build -c Release
 
 deploy:
 - provider: pages
