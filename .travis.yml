@@ -20,10 +20,6 @@ deploy:
     branch: master
 - provider: script
   skip_cleanup: true
-  script:
-    - curl -L -o nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-    - export NUGET='mono nuget.exe'
-    - $NUGET pack ./ObjectOrientedDB/ObjectOrientedDB.nuspec -Version $TRAVIS_TAG
-    - $NUGET push ObjectOrientedDB/bin/Release/ObjectOrientedDB.*.nupkg -k $NUGET_API_KEY -s $NUGET_SOURCE
+  script: bin/deploy.sh $TRAVIS_TAG $NUGET_SOURCE $NUGET_API_KEY
   on:
     tags: true
