@@ -20,7 +20,7 @@
         <projectUrl>https://github.com/markus-wa/ObjectOrientedDB</projectUrl>
         <!-- The description can be used in package manager UI. Note that the
              nuget.org gallery uses information you add in the portal. -->
-        <description>Object Oriented Database</tags>
+        <description>Object Oriented Database</description>
     </metadata>
     <files>
 
