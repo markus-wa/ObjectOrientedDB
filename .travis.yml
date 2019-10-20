@@ -6,6 +6,9 @@ solution: ObjectOrientedDB.sln
 git:
   depth: false
 
+install:
+- msbuild -r
+
 before_script:
 - nuget install docfx.console -ExcludeVersion
 - export DOCFX='mono docfx.console/tools/docfx.exe'
