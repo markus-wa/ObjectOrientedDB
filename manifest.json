@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.BinaryFormatterSerializer.html",
-          "hash": "kHOZNvdmif+0GWqxSJkMSw=="
+          "hash": "+THHSLCV6lEORRinqsJDVA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -21,10 +21,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.FileStorage.FileStorageEngine.html",
-          "hash": "OBg+Vl8AAot69gQ/5S1v2Q=="
+          "hash": "5RCSO9bpeMAGAhdaAzfQzw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -33,10 +33,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.FileStorage.FileStorageEngineFactory.html",
-          "hash": "OcC4l3s7kmEnAIkZA7aPsQ=="
+          "hash": "Y9pqYSViHCaZpmrUihAKxw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -48,7 +48,7 @@
           "hash": "qWmdiF13swoa+67rR0LHxw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -57,10 +57,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.html",
-          "hash": "Dm2NI5WeW6fkLDGlNP2y7A=="
+          "hash": "8JzjCKP+B1J+k0v92PcYQw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -72,7 +72,7 @@
           "hash": "sUa7KMLxPrCoRfizzWo89w=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -81,10 +81,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.ObjectDB-1.GuidProvider.html",
-          "hash": "daSK1rN9C6DL7hcxrvLMsA=="
+          "hash": "wo92wG3q99+Gw1DXlIau5g=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -93,10 +93,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.ObjectDB-1.html",
-          "hash": "1AuEebZI74DW7kZz745sAQ=="
+          "hash": "Z91BOy75C01FpjOr8sC7fQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -105,10 +105,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.RecordNotFoundException.html",
-          "hash": "0gTgGO1ktIB0a3/g3JebOw=="
+          "hash": "UdE9ldFxzfhPbNlJ7CWMfQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -117,10 +117,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.Serializer-1.html",
-          "hash": "tBc1Sv8Sd8Y5APxEGA96/w=="
+          "hash": "1hfOyEABcHql8RUbgAM7fw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -129,10 +129,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.StorageEngine.html",
-          "hash": "BONCQkXTR9aiSNdTXoEzWw=="
+          "hash": "+dDoFkjxBBGqM1IPOLSWvQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -144,7 +144,7 @@
           "hash": "/kM8qQyZIhOsaGyrrrPFow=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -153,10 +153,10 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "qZx648CjVWiQKef+zJeQNA=="
+          "hash": "drXkvEyqs2bnkhkcsMq2jg=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -177,10 +177,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "lbtW1uaGeq6UtLIf1oUiww=="
+          "hash": "Fj8MnxKSQav443JywnQ0Xw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -201,10 +201,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "mpHQD2ESZPMPDB5INPD9Ig=="
+          "hash": "wWxhtQGTjvTmAyHkt7hhHA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -223,23 +223,25 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 3,
-          "skipped_file_count": 3
+          "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 12,
-          "skipped_file_count": 12
+          "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
@@ -252,8 +254,8 @@
     },
     {
       "status": {
-        "can_incremental": true,
-        "details": "Can support incremental post processing.",
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0
