@@ -1,7 +1,7 @@
 language: csharp
 dist: bionic
 mono: none
-dotnet: 2.2.108
+dotnet: 2.2
 solution: ObjectOrientedDB.sln
 
 git:
