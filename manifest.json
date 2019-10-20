@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.BinaryFormatterSerializer.html",
-          "hash": "11iT5wxvbMZCizbOcp60YA=="
+          "hash": "kHOZNvdmif+0GWqxSJkMSw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -21,10 +21,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.FileStorage.FileStorageEngine.html",
-          "hash": "NXzXC6PKPqPhzDPMdQ28JQ=="
+          "hash": "OBg+Vl8AAot69gQ/5S1v2Q=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -33,10 +33,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.FileStorage.FileStorageEngineFactory.html",
-          "hash": "qu0McxrMsbXxaCQe7SkRfQ=="
+          "hash": "OcC4l3s7kmEnAIkZA7aPsQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -48,7 +48,7 @@
           "hash": "qWmdiF13swoa+67rR0LHxw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -57,10 +57,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.html",
-          "hash": "wYCAN4Mq3+xebtTpmCFTZQ=="
+          "hash": "Dm2NI5WeW6fkLDGlNP2y7A=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -72,7 +72,7 @@
           "hash": "sUa7KMLxPrCoRfizzWo89w=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -81,10 +81,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.ObjectDB-1.GuidProvider.html",
-          "hash": "Dfni6iZrpqYWfrokGMA3iw=="
+          "hash": "daSK1rN9C6DL7hcxrvLMsA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -93,10 +93,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.ObjectDB-1.html",
-          "hash": "F75KwBeOZtQmibmpHiop/Q=="
+          "hash": "1AuEebZI74DW7kZz745sAQ=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -105,10 +105,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.RecordNotFoundException.html",
-          "hash": "Yyy3Wb80ZfU5MmveaBqNaw=="
+          "hash": "0gTgGO1ktIB0a3/g3JebOw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -117,10 +117,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.Serializer-1.html",
-          "hash": "z4lVUM8J+6rYSbyt3zm8zw=="
+          "hash": "tBc1Sv8Sd8Y5APxEGA96/w=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -129,10 +129,10 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.StorageEngine.html",
-          "hash": "PdfRXRTL7lEBjg+NhL1vcA=="
+          "hash": "BONCQkXTR9aiSNdTXoEzWw=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -144,7 +144,7 @@
           "hash": "/kM8qQyZIhOsaGyrrrPFow=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -153,10 +153,10 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "diMAyYzSzBZjuoFIPW7ywg=="
+          "hash": "qZx648CjVWiQKef+zJeQNA=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -177,10 +177,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "xDgfShq7DmZ63ffstx9tKQ=="
+          "hash": "lbtW1uaGeq6UtLIf1oUiww=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -201,10 +201,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "ECBeudOxve30PvEo7Vqt5w=="
+          "hash": "mpHQD2ESZPMPDB5INPD9Ig=="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -223,39 +223,37 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "NoAvailableBuildCache"
+        "skipped_file_count": 0
       },
       "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 3
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 12,
+          "skipped_file_count": 12
+        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
           "skipped_file_count": 0
-        },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 3,
-          "skipped_file_count": 0
-        },
-        "ManagedReferenceDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 12,
-          "skipped_file_count": 0
         }
       }
     },
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0

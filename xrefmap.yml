@@ -60,11 +60,11 @@ references:
   commentId: F:ObjectOrientedDB.FileStorage.FileStorageEngine.DEFAULT_INDEX_SIZE
   fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.DEFAULT_INDEX_SIZE
   nameWithType: FileStorageEngine.DEFAULT_INDEX_SIZE
-- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Delete(Guid)
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Delete(System.Guid)
   name: Delete(Guid)
-  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Delete_Guid_
-  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngine.Delete(Guid)
-  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Delete(Guid)
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Delete_System_Guid_
+  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngine.Delete(System.Guid)
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Delete(System.Guid)
   nameWithType: FileStorageEngine.Delete(Guid)
 - uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Delete*
   name: Delete
@@ -86,13 +86,13 @@ references:
   isSpec: "True"
   fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Dispose
   nameWithType: FileStorageEngine.Dispose
-- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Insert(Guid,System.Byte[])
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Insert(System.Guid,System.Byte[])
   name: Insert(Guid, Byte[])
-  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Insert_Guid_System_Byte___
-  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngine.Insert(Guid,System.Byte[])
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Insert_System_Guid_System_Byte___
+  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngine.Insert(System.Guid,System.Byte[])
   name.vb: Insert(Guid, Byte())
-  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Insert(Guid, System.Byte[])
-  fullName.vb: ObjectOrientedDB.FileStorage.FileStorageEngine.Insert(Guid, System.Byte())
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Insert(System.Guid, System.Byte[])
+  fullName.vb: ObjectOrientedDB.FileStorage.FileStorageEngine.Insert(System.Guid, System.Byte())
   nameWithType: FileStorageEngine.Insert(Guid, Byte[])
   nameWithType.vb: FileStorageEngine.Insert(Guid, Byte())
 - uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Insert*
@@ -102,11 +102,11 @@ references:
   isSpec: "True"
   fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Insert
   nameWithType: FileStorageEngine.Insert
-- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Read(Guid)
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Read(System.Guid)
   name: Read(Guid)
-  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Read_Guid_
-  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngine.Read(Guid)
-  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Read(Guid)
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Read_System_Guid_
+  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngine.Read(System.Guid)
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Read(System.Guid)
   nameWithType: FileStorageEngine.Read(Guid)
 - uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Read*
   name: Read
@@ -115,13 +115,13 @@ references:
   isSpec: "True"
   fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Read
   nameWithType: FileStorageEngine.Read
-- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Update(Guid,System.Byte[])
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Update(System.Guid,System.Byte[])
   name: Update(Guid, Byte[])
-  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Update_Guid_System_Byte___
-  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngine.Update(Guid,System.Byte[])
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Update_System_Guid_System_Byte___
+  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngine.Update(System.Guid,System.Byte[])
   name.vb: Update(Guid, Byte())
-  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Update(Guid, System.Byte[])
-  fullName.vb: ObjectOrientedDB.FileStorage.FileStorageEngine.Update(Guid, System.Byte())
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Update(System.Guid, System.Byte[])
+  fullName.vb: ObjectOrientedDB.FileStorage.FileStorageEngine.Update(System.Guid, System.Byte())
   nameWithType: FileStorageEngine.Update(Guid, Byte[])
   nameWithType.vb: FileStorageEngine.Update(Guid, Byte())
 - uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Update*
@@ -175,13 +175,13 @@ references:
   commentId: T:ObjectOrientedDB.FlatBuffers.FlatBufferSerializer
   fullName: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer
   nameWithType: FlatBufferSerializer
-- uid: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.#ctor(List{Func{FlatBuffers.ByteBuffer,FlatBuffers.IFlatbufferObject}})
+- uid: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.#ctor(System.Collections.Generic.List{System.Func{FlatBuffers.ByteBuffer,FlatBuffers.IFlatbufferObject}})
   name: FlatBufferSerializer(List<Func<ByteBuffer, IFlatbufferObject>>)
-  href: api/ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.html#ObjectOrientedDB_FlatBuffers_FlatBufferSerializer__ctor_List_Func_FlatBuffers_ByteBuffer_FlatBuffers_IFlatbufferObject___
-  commentId: M:ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.#ctor(List{Func{FlatBuffers.ByteBuffer,FlatBuffers.IFlatbufferObject}})
+  href: api/ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.html#ObjectOrientedDB_FlatBuffers_FlatBufferSerializer__ctor_System_Collections_Generic_List_System_Func_FlatBuffers_ByteBuffer_FlatBuffers_IFlatbufferObject___
+  commentId: M:ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.#ctor(System.Collections.Generic.List{System.Func{FlatBuffers.ByteBuffer,FlatBuffers.IFlatbufferObject}})
   name.vb: FlatBufferSerializer(List(Of Func(Of ByteBuffer, IFlatbufferObject)))
-  fullName: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.FlatBufferSerializer(List<Func<FlatBuffers.ByteBuffer, FlatBuffers.IFlatbufferObject>>)
-  fullName.vb: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.FlatBufferSerializer(List(Of Func(Of FlatBuffers.ByteBuffer, FlatBuffers.IFlatbufferObject)))
+  fullName: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.FlatBufferSerializer(System.Collections.Generic.List<System.Func<FlatBuffers.ByteBuffer, FlatBuffers.IFlatbufferObject>>)
+  fullName.vb: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.FlatBufferSerializer(System.Collections.Generic.List(Of System.Func(Of FlatBuffers.ByteBuffer, FlatBuffers.IFlatbufferObject)))
   nameWithType: FlatBufferSerializer.FlatBufferSerializer(List<Func<ByteBuffer, IFlatbufferObject>>)
   nameWithType.vb: FlatBufferSerializer.FlatBufferSerializer(List(Of Func(Of ByteBuffer, IFlatbufferObject)))
 - uid: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.#ctor*
@@ -247,12 +247,12 @@ references:
   fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).ObjectDB
   nameWithType: ObjectDB<TGroup>.ObjectDB
   nameWithType.vb: ObjectDB(Of TGroup).ObjectDB
-- uid: ObjectOrientedDB.ObjectDB`1.Delete(Guid)
+- uid: ObjectOrientedDB.ObjectDB`1.Delete(System.Guid)
   name: Delete(Guid)
-  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Delete_Guid_
-  commentId: M:ObjectOrientedDB.ObjectDB`1.Delete(Guid)
-  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Delete(Guid)
-  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Delete(Guid)
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Delete_System_Guid_
+  commentId: M:ObjectOrientedDB.ObjectDB`1.Delete(System.Guid)
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Delete(System.Guid)
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Delete(System.Guid)
   nameWithType: ObjectDB<TGroup>.Delete(Guid)
   nameWithType.vb: ObjectDB(Of TGroup).Delete(Guid)
 - uid: ObjectOrientedDB.ObjectDB`1.Delete*
@@ -316,21 +316,21 @@ references:
   fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Read
   nameWithType: ObjectDB<TGroup>.Read
   nameWithType.vb: ObjectDB(Of TGroup).Read
-- uid: ObjectOrientedDB.ObjectDB`1.Read``1(Guid)
+- uid: ObjectOrientedDB.ObjectDB`1.Read``1(System.Guid)
   name: Read<T>(Guid)
-  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Read__1_Guid_
-  commentId: M:ObjectOrientedDB.ObjectDB`1.Read``1(Guid)
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Read__1_System_Guid_
+  commentId: M:ObjectOrientedDB.ObjectDB`1.Read``1(System.Guid)
   name.vb: Read(Of T)(Guid)
-  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Read<T>(Guid)
-  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Read(Of T)(Guid)
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Read<T>(System.Guid)
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Read(Of T)(System.Guid)
   nameWithType: ObjectDB<TGroup>.Read<T>(Guid)
   nameWithType.vb: ObjectDB(Of TGroup).Read(Of T)(Guid)
-- uid: ObjectOrientedDB.ObjectDB`1.Update(Guid,`0)
+- uid: ObjectOrientedDB.ObjectDB`1.Update(System.Guid,`0)
   name: Update(Guid, TGroup)
-  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Update_Guid__0_
-  commentId: M:ObjectOrientedDB.ObjectDB`1.Update(Guid,`0)
-  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Update(Guid, TGroup)
-  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Update(Guid, TGroup)
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Update_System_Guid__0_
+  commentId: M:ObjectOrientedDB.ObjectDB`1.Update(System.Guid,`0)
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Update(System.Guid, TGroup)
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Update(System.Guid, TGroup)
   nameWithType: ObjectDB<TGroup>.Update(Guid, TGroup)
   nameWithType.vb: ObjectDB(Of TGroup).Update(Guid, TGroup)
 - uid: ObjectOrientedDB.ObjectDB`1.Update*
@@ -411,11 +411,11 @@ references:
   commentId: T:ObjectOrientedDB.StorageEngine
   fullName: ObjectOrientedDB.StorageEngine
   nameWithType: StorageEngine
-- uid: ObjectOrientedDB.StorageEngine.Delete(Guid)
+- uid: ObjectOrientedDB.StorageEngine.Delete(System.Guid)
   name: Delete(Guid)
-  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Delete_Guid_
-  commentId: M:ObjectOrientedDB.StorageEngine.Delete(Guid)
-  fullName: ObjectOrientedDB.StorageEngine.Delete(Guid)
+  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Delete_System_Guid_
+  commentId: M:ObjectOrientedDB.StorageEngine.Delete(System.Guid)
+  fullName: ObjectOrientedDB.StorageEngine.Delete(System.Guid)
   nameWithType: StorageEngine.Delete(Guid)
 - uid: ObjectOrientedDB.StorageEngine.Delete*
   name: Delete
@@ -424,13 +424,13 @@ references:
   isSpec: "True"
   fullName: ObjectOrientedDB.StorageEngine.Delete
   nameWithType: StorageEngine.Delete
-- uid: ObjectOrientedDB.StorageEngine.Insert(Guid,System.Byte[])
+- uid: ObjectOrientedDB.StorageEngine.Insert(System.Guid,System.Byte[])
   name: Insert(Guid, Byte[])
-  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Insert_Guid_System_Byte___
-  commentId: M:ObjectOrientedDB.StorageEngine.Insert(Guid,System.Byte[])
+  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Insert_System_Guid_System_Byte___
+  commentId: M:ObjectOrientedDB.StorageEngine.Insert(System.Guid,System.Byte[])
   name.vb: Insert(Guid, Byte())
-  fullName: ObjectOrientedDB.StorageEngine.Insert(Guid, System.Byte[])
-  fullName.vb: ObjectOrientedDB.StorageEngine.Insert(Guid, System.Byte())
+  fullName: ObjectOrientedDB.StorageEngine.Insert(System.Guid, System.Byte[])
+  fullName.vb: ObjectOrientedDB.StorageEngine.Insert(System.Guid, System.Byte())
   nameWithType: StorageEngine.Insert(Guid, Byte[])
   nameWithType.vb: StorageEngine.Insert(Guid, Byte())
 - uid: ObjectOrientedDB.StorageEngine.Insert*
@@ -440,11 +440,11 @@ references:
   isSpec: "True"
   fullName: ObjectOrientedDB.StorageEngine.Insert
   nameWithType: StorageEngine.Insert
-- uid: ObjectOrientedDB.StorageEngine.Read(Guid)
+- uid: ObjectOrientedDB.StorageEngine.Read(System.Guid)
   name: Read(Guid)
-  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Read_Guid_
-  commentId: M:ObjectOrientedDB.StorageEngine.Read(Guid)
-  fullName: ObjectOrientedDB.StorageEngine.Read(Guid)
+  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Read_System_Guid_
+  commentId: M:ObjectOrientedDB.StorageEngine.Read(System.Guid)
+  fullName: ObjectOrientedDB.StorageEngine.Read(System.Guid)
   nameWithType: StorageEngine.Read(Guid)
 - uid: ObjectOrientedDB.StorageEngine.Read*
   name: Read
@@ -453,13 +453,13 @@ references:
   isSpec: "True"
   fullName: ObjectOrientedDB.StorageEngine.Read
   nameWithType: StorageEngine.Read
-- uid: ObjectOrientedDB.StorageEngine.Update(Guid,System.Byte[])
+- uid: ObjectOrientedDB.StorageEngine.Update(System.Guid,System.Byte[])
   name: Update(Guid, Byte[])
-  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Update_Guid_System_Byte___
-  commentId: M:ObjectOrientedDB.StorageEngine.Update(Guid,System.Byte[])
+  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Update_System_Guid_System_Byte___
+  commentId: M:ObjectOrientedDB.StorageEngine.Update(System.Guid,System.Byte[])
   name.vb: Update(Guid, Byte())
-  fullName: ObjectOrientedDB.StorageEngine.Update(Guid, System.Byte[])
-  fullName.vb: ObjectOrientedDB.StorageEngine.Update(Guid, System.Byte())
+  fullName: ObjectOrientedDB.StorageEngine.Update(System.Guid, System.Byte[])
+  fullName.vb: ObjectOrientedDB.StorageEngine.Update(System.Guid, System.Byte())
   nameWithType: StorageEngine.Update(Guid, Byte[])
   nameWithType.vb: StorageEngine.Update(Guid, Byte())
 - uid: ObjectOrientedDB.StorageEngine.Update*
