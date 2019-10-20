@@ -333,7 +333,7 @@ namespace Benchmarks
 
             var nRecords = dataSize;
             var buffer = 100_000;
-            using (var db = new ObjectDB<IFlatbufferObject>(FileStorageEngine.Create("benchmark", SIZE_15GB, nRecords + buffer), new FlatBufferSerializer(factories)))
+            using (var db = new ObjectDB<IFlatbufferObject>(FileStorageEngineFactory.Create("benchmark", SIZE_15GB, nRecords + buffer), new FlatBufferSerializer(factories)))
             {
                 // set up data
                 for (int i = 0; i < nRecords; i++)

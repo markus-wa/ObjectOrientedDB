@@ -9,37 +9,28 @@ namespace ObjectOrientedDB.FileStorage
     public class FileStorageEngineTest
     {
         const long SIZE_1MB = 1024 * 1024;
-
-        [Fact]
-        public void CreateAddsMetadata()
-        {
-            using (var indexFile = MemoryMappedFile.CreateNew("index", SIZE_1MB))
-            using (new FileStorageEngine(indexFile, MemoryMappedFile.CreateNew("data", SIZE_1MB)))
-            using (var metadataAccessor = indexFile.CreateViewAccessor(0, Marshal.SizeOf(typeof(Metadata))))
-            {
-                metadataAccessor.Read(0, out Metadata metadata);
-                Assert.Equal(0, metadata.Data.NextOffset);
-            }
-        }
-
-        private FileStorageEngine Create1MBEngine()
-        {
-            return new FileStorageEngine(MemoryMappedFile.CreateNew("index", SIZE_1MB), MemoryMappedFile.CreateNew("data", SIZE_1MB));
-        }
+        const long INDEX_METADATA_SIZE = 8;
+        const long DATA_METADATA_SIZE = 8;
 
         [Fact]
         public void StoreUpdatesMetadata()
         {
             using (var indexFile = MemoryMappedFile.CreateNew("index", SIZE_1MB))
-            using (var engine = new FileStorageEngine(indexFile, MemoryMappedFile.CreateNew("data", SIZE_1MB)))
+            using (var dataFile = MemoryMappedFile.CreateNew("data", SIZE_1MB))
+            using (var engine = new FileStorageEngine(indexFile, dataFile))
             {
                 engine.Insert(Guid.NewGuid(), BitConverter.GetBytes(UInt64.MaxValue));
 
-                using (var metadataAccessor = indexFile.CreateViewAccessor(0, Marshal.SizeOf(typeof(Metadata))))
+                using (var indexMetadataAccessor = indexFile.CreateViewAccessor(0, INDEX_METADATA_SIZE))
                 {
-                    metadataAccessor.Read(0, out Metadata metadata);
-                    Assert.Equal(1, metadata.Index.NextBSTNode);
-                    Assert.Equal(8, metadata.Data.NextOffset);
+                    var nextBstNode = indexMetadataAccessor.ReadInt64(0);
+                    Assert.Equal(1, nextBstNode);
+                }
+
+                using (var dataMetadataAccessor = dataFile.CreateViewAccessor(0, INDEX_METADATA_SIZE))
+                {
+                    var nextBstNode = dataMetadataAccessor.ReadInt64(0);
+                    Assert.Equal(DATA_METADATA_SIZE + 8, nextBstNode);
                 }
             }
         }
@@ -56,9 +47,8 @@ namespace ObjectOrientedDB.FileStorage
                 engine.Insert(guidGenerator(), BitConverter.GetBytes(Int64.MinValue));
                 engine.Insert(guidGenerator(), BitConverter.GetBytes(Int64.MaxValue));
 
-                var bstOffset = Marshal.SizeOf(typeof(Metadata));
                 var bstNodeSize = Marshal.SizeOf(typeof(BSTNode));
-                using (var bstAccessor = indexFile.CreateViewAccessor(bstOffset, 3 * bstNodeSize))
+                using (var bstAccessor = indexFile.CreateViewAccessor(INDEX_METADATA_SIZE, 3 * bstNodeSize))
                 {
                     // root
                     bstAccessor.Read(0, out BSTNode bstNode);
@@ -87,7 +77,7 @@ namespace ObjectOrientedDB.FileStorage
                 var input = BitConverter.GetBytes(UInt64.MaxValue);
                 engine.Insert(Guid.NewGuid(), input);
 
-                using (var dataAccessor = dataFile.CreateViewAccessor(0, input.Length))
+                using (var dataAccessor = dataFile.CreateViewAccessor(DATA_METADATA_SIZE, input.Length))
                 {
                     var stored = new byte[input.Length];
                     dataAccessor.ReadArray(0, stored, 0, stored.Length);
@@ -148,65 +138,6 @@ namespace ObjectOrientedDB.FileStorage
 
                     Assert.Equal(input, output);
                 }
-            }
-        }
-
-        [Fact]
-        public void Bench()
-        {
-            var n = 10 * 1000;
-            var nThreads = 1; // multithreading is currently not supported
-            using (var engine = FileStorageEngine.Create("db", 1024 * SIZE_1MB, n * nThreads))
-            {
-                byte data = 1;
-
-                var input = new byte[] { data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,
-                        data++, data++, data++, data++, data++, data++, data++, data++,};
-
-                Task[] taskArray = new Task[nThreads];
-                for (int i = 0; i < taskArray.Length; i++)
-                {
-                    taskArray[i] = Task.Run(() =>
-                    {
-                        for (var j = 0; j < n; j++)
-                        {
-                            var guid = Guid.NewGuid();
-                            engine.Insert(guid, input);
-                            var output = engine.Read(guid);
-
-                            Assert.Equal(input, output);
-                        }
-                    });
-                }
-                Task.WaitAll(taskArray);
             }
         }
     }

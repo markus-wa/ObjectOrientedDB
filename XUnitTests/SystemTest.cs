@@ -113,12 +113,12 @@ namespace XUnitTests
 
         private ObjectDB<object> NewDB(string name)
         {
-            return new ObjectDB<object>(FileStorageEngine.Create("dbs/" + name, SIZE_1G, 64), new BinaryFormatterSerializer());
+            return new ObjectDB<object>(FileStorageEngineFactory.Create("dbs/" + name, SIZE_1G, 64), new BinaryFormatterSerializer());
         }
 
         private ObjectDB<object> OpenDB(string name)
         {
-            return new ObjectDB<object>(FileStorageEngine.Open("dbs/" + name), new BinaryFormatterSerializer());
+            return new ObjectDB<object>(FileStorageEngineFactory.Open("dbs/" + name), new BinaryFormatterSerializer());
         }
 
     }

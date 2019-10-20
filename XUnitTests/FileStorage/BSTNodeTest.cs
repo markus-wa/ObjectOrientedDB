@@ -14,7 +14,7 @@ namespace ObjectOrientedDB.FileStorage
 
             Assert.Equal(guid, node.Guid);
             Assert.Equal(1, node.DataOffset);
-            Assert.Equal(2, node.Size);
+            Assert.Equal(2, node.DataSize);
         }
     }
 }

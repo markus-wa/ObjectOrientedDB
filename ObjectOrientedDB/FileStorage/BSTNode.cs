@@ -8,7 +8,7 @@ namespace ObjectOrientedDB.FileStorage
 
         public long DataOffset;
 
-        public long Size;
+        public long DataSize;
 
         public long Low;
         public long High;
@@ -17,7 +17,7 @@ namespace ObjectOrientedDB.FileStorage
         {
             this.Guid = guid;
             this.DataOffset = dataOffset;
-            this.Size = size;
+            this.DataSize = size;
             this.Low = 0;
             this.High = 0;
         }
