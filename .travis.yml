@@ -1,0 +1,23 @@
+language: csharp
+dist: trusty
+mono: latest
+
+git:
+  depth: false
+
+before_script:
+- nuget install docfx.console -ExcludeVersion
+- export DOCFX_TOOL="mono docfx.console/tools/docfx.exe"
+
+script:
+- $DOCFX_TOOL metadata ObjectOrientedDB/docfx.json
+- $DOCFX_TOOL build ObjectOrientedDB/docfx.json
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local-dir: ObjectOrientedDB/_site
+  keep_history: true
+  on:
+    branch: master

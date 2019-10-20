@@ -6,7 +6,7 @@
           "files": [
             "**.csproj"
           ],
-          "src": "C:\\Users\\mwalt\\source\\repos\\ObjectOrientedDB\\ObjectOrientedDB"
+          "src": "."
         }
       ],
       "dest": "api",
