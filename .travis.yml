@@ -1,15 +1,27 @@
 language: csharp
 dist: trusty
 mono: latest
+solution: ObjectOrientedDB.sln
 
 git:
   depth: false
+
+install:
+- nuget restore ObjectOrientedDB.sln
+- nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
 
 before_script:
 - nuget install docfx.console -ExcludeVersion
 - export DOCFX_TOOL="mono docfx.console/tools/docfx.exe"
 
 script:
+# Build
+- msbuild /p:Configuration=Release ObjectOrientedDB.sln
+
+# Test
+- mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./XUnitTests/bin/Release/netcoreapp2.2/XUnitTests.dll
+
+# Doc
 - $DOCFX_TOOL metadata ObjectOrientedDB/docfx.json
 - $DOCFX_TOOL build ObjectOrientedDB/docfx.json
 
