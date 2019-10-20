@@ -6,7 +6,7 @@
         <title>ObjectOrientedDB</title>
 
         <!-- The package version number that is used when resolving dependencies -->
-        <version>0.1.0</version>
+        <version>$version$</version>
 
         <!-- Authors contain text that appears directly on the gallery -->
         <authors>Markus Walther</authors>
