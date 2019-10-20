@@ -1,24 +1,14 @@
 language: csharp
 dist: bionic
 mono: latest
+dotnet: 2.2
 solution: ObjectOrientedDB.sln
 
 git:
   depth: false
 
-install:
-- msbuild -r
-
-before_script:
-- nuget install docfx.console -ExcludeVersion
-- export DOCFX='mono docfx.console/tools/docfx.exe'
-
 script:
-- msbuild /p:Configuration=Release ObjectOrientedDB.sln
-
-# Doc
-- $DOCFX metadata ObjectOrientedDB/docfx.json
-- $DOCFX build ObjectOrientedDB/docfx.json
+- dotnet build
 
 deploy:
   provider: pages
