@@ -23,3 +23,9 @@ deploy:
   script: bin/deploy.sh $TRAVIS_TAG $NUGET_SOURCE $NUGET_API_KEY
   on:
     tags: true
+- provider: releases
+  api_key: $GITHUB_TOKEN
+  file: ObjectOrientedDB/bin/Release/netstandard2.0/ObjectOrientedDB.dll
+  skip_cleanup: true
+  on:
+    tags: true
