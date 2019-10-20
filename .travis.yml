@@ -1,13 +1,11 @@
 language: csharp
 dist: trusty
-mono: latest
+mono: none
+dotnet: 2.2.402
 solution: ObjectOrientedDB.sln
 
 git:
   depth: false
-
-install:
-- msbuild -r
 
 before_script:
 - nuget install docfx.console -ExcludeVersion
