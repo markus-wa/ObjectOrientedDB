@@ -1,3 +1,471 @@
 ### YamlMime:XRefMap
 sorted: true
-references: []
+references:
+- uid: ObjectOrientedDB
+  name: ObjectOrientedDB
+  href: api/ObjectOrientedDB.html
+  commentId: N:ObjectOrientedDB
+  fullName: ObjectOrientedDB
+  nameWithType: ObjectOrientedDB
+- uid: ObjectOrientedDB.BinaryFormatterSerializer
+  name: BinaryFormatterSerializer
+  href: api/ObjectOrientedDB.BinaryFormatterSerializer.html
+  commentId: T:ObjectOrientedDB.BinaryFormatterSerializer
+  fullName: ObjectOrientedDB.BinaryFormatterSerializer
+  nameWithType: BinaryFormatterSerializer
+- uid: ObjectOrientedDB.BinaryFormatterSerializer.Deserialize*
+  name: Deserialize
+  href: api/ObjectOrientedDB.BinaryFormatterSerializer.html#ObjectOrientedDB_BinaryFormatterSerializer_Deserialize_
+  commentId: Overload:ObjectOrientedDB.BinaryFormatterSerializer.Deserialize
+  isSpec: "True"
+  fullName: ObjectOrientedDB.BinaryFormatterSerializer.Deserialize
+  nameWithType: BinaryFormatterSerializer.Deserialize
+- uid: ObjectOrientedDB.BinaryFormatterSerializer.Deserialize``1(System.Byte[])
+  name: Deserialize<D>(Byte[])
+  href: api/ObjectOrientedDB.BinaryFormatterSerializer.html#ObjectOrientedDB_BinaryFormatterSerializer_Deserialize__1_System_Byte___
+  commentId: M:ObjectOrientedDB.BinaryFormatterSerializer.Deserialize``1(System.Byte[])
+  name.vb: Deserialize(Of D)(Byte())
+  fullName: ObjectOrientedDB.BinaryFormatterSerializer.Deserialize<D>(System.Byte[])
+  fullName.vb: ObjectOrientedDB.BinaryFormatterSerializer.Deserialize(Of D)(System.Byte())
+  nameWithType: BinaryFormatterSerializer.Deserialize<D>(Byte[])
+  nameWithType.vb: BinaryFormatterSerializer.Deserialize(Of D)(Byte())
+- uid: ObjectOrientedDB.BinaryFormatterSerializer.Serialize(System.Object)
+  name: Serialize(Object)
+  href: api/ObjectOrientedDB.BinaryFormatterSerializer.html#ObjectOrientedDB_BinaryFormatterSerializer_Serialize_System_Object_
+  commentId: M:ObjectOrientedDB.BinaryFormatterSerializer.Serialize(System.Object)
+  fullName: ObjectOrientedDB.BinaryFormatterSerializer.Serialize(System.Object)
+  nameWithType: BinaryFormatterSerializer.Serialize(Object)
+- uid: ObjectOrientedDB.BinaryFormatterSerializer.Serialize*
+  name: Serialize
+  href: api/ObjectOrientedDB.BinaryFormatterSerializer.html#ObjectOrientedDB_BinaryFormatterSerializer_Serialize_
+  commentId: Overload:ObjectOrientedDB.BinaryFormatterSerializer.Serialize
+  isSpec: "True"
+  fullName: ObjectOrientedDB.BinaryFormatterSerializer.Serialize
+  nameWithType: BinaryFormatterSerializer.Serialize
+- uid: ObjectOrientedDB.FileStorage
+  name: ObjectOrientedDB.FileStorage
+  href: api/ObjectOrientedDB.FileStorage.html
+  commentId: N:ObjectOrientedDB.FileStorage
+  fullName: ObjectOrientedDB.FileStorage
+  nameWithType: ObjectOrientedDB.FileStorage
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine
+  name: FileStorageEngine
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html
+  commentId: T:ObjectOrientedDB.FileStorage.FileStorageEngine
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine
+  nameWithType: FileStorageEngine
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.DEFAULT_INDEX_SIZE
+  name: DEFAULT_INDEX_SIZE
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_DEFAULT_INDEX_SIZE
+  commentId: F:ObjectOrientedDB.FileStorage.FileStorageEngine.DEFAULT_INDEX_SIZE
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.DEFAULT_INDEX_SIZE
+  nameWithType: FileStorageEngine.DEFAULT_INDEX_SIZE
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Delete(Guid)
+  name: Delete(Guid)
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Delete_Guid_
+  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngine.Delete(Guid)
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Delete(Guid)
+  nameWithType: FileStorageEngine.Delete(Guid)
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Delete*
+  name: Delete
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Delete_
+  commentId: Overload:ObjectOrientedDB.FileStorage.FileStorageEngine.Delete
+  isSpec: "True"
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Delete
+  nameWithType: FileStorageEngine.Delete
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Dispose
+  name: Dispose()
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Dispose
+  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngine.Dispose
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Dispose()
+  nameWithType: FileStorageEngine.Dispose()
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Dispose*
+  name: Dispose
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Dispose_
+  commentId: Overload:ObjectOrientedDB.FileStorage.FileStorageEngine.Dispose
+  isSpec: "True"
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Dispose
+  nameWithType: FileStorageEngine.Dispose
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Insert(Guid,System.Byte[])
+  name: Insert(Guid, Byte[])
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Insert_Guid_System_Byte___
+  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngine.Insert(Guid,System.Byte[])
+  name.vb: Insert(Guid, Byte())
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Insert(Guid, System.Byte[])
+  fullName.vb: ObjectOrientedDB.FileStorage.FileStorageEngine.Insert(Guid, System.Byte())
+  nameWithType: FileStorageEngine.Insert(Guid, Byte[])
+  nameWithType.vb: FileStorageEngine.Insert(Guid, Byte())
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Insert*
+  name: Insert
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Insert_
+  commentId: Overload:ObjectOrientedDB.FileStorage.FileStorageEngine.Insert
+  isSpec: "True"
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Insert
+  nameWithType: FileStorageEngine.Insert
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Read(Guid)
+  name: Read(Guid)
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Read_Guid_
+  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngine.Read(Guid)
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Read(Guid)
+  nameWithType: FileStorageEngine.Read(Guid)
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Read*
+  name: Read
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Read_
+  commentId: Overload:ObjectOrientedDB.FileStorage.FileStorageEngine.Read
+  isSpec: "True"
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Read
+  nameWithType: FileStorageEngine.Read
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Update(Guid,System.Byte[])
+  name: Update(Guid, Byte[])
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Update_Guid_System_Byte___
+  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngine.Update(Guid,System.Byte[])
+  name.vb: Update(Guid, Byte())
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Update(Guid, System.Byte[])
+  fullName.vb: ObjectOrientedDB.FileStorage.FileStorageEngine.Update(Guid, System.Byte())
+  nameWithType: FileStorageEngine.Update(Guid, Byte[])
+  nameWithType.vb: FileStorageEngine.Update(Guid, Byte())
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngine.Update*
+  name: Update
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngine.html#ObjectOrientedDB_FileStorage_FileStorageEngine_Update_
+  commentId: Overload:ObjectOrientedDB.FileStorage.FileStorageEngine.Update
+  isSpec: "True"
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngine.Update
+  nameWithType: FileStorageEngine.Update
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngineFactory
+  name: FileStorageEngineFactory
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngineFactory.html
+  commentId: T:ObjectOrientedDB.FileStorage.FileStorageEngineFactory
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngineFactory
+  nameWithType: FileStorageEngineFactory
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngineFactory.Create(System.String,System.Int64,System.Int64)
+  name: Create(String, Int64, Int64)
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngineFactory.html#ObjectOrientedDB_FileStorage_FileStorageEngineFactory_Create_System_String_System_Int64_System_Int64_
+  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngineFactory.Create(System.String,System.Int64,System.Int64)
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngineFactory.Create(System.String, System.Int64, System.Int64)
+  nameWithType: FileStorageEngineFactory.Create(String, Int64, Int64)
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngineFactory.Create*
+  name: Create
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngineFactory.html#ObjectOrientedDB_FileStorage_FileStorageEngineFactory_Create_
+  commentId: Overload:ObjectOrientedDB.FileStorage.FileStorageEngineFactory.Create
+  isSpec: "True"
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngineFactory.Create
+  nameWithType: FileStorageEngineFactory.Create
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngineFactory.Open(System.String)
+  name: Open(String)
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngineFactory.html#ObjectOrientedDB_FileStorage_FileStorageEngineFactory_Open_System_String_
+  commentId: M:ObjectOrientedDB.FileStorage.FileStorageEngineFactory.Open(System.String)
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngineFactory.Open(System.String)
+  nameWithType: FileStorageEngineFactory.Open(String)
+- uid: ObjectOrientedDB.FileStorage.FileStorageEngineFactory.Open*
+  name: Open
+  href: api/ObjectOrientedDB.FileStorage.FileStorageEngineFactory.html#ObjectOrientedDB_FileStorage_FileStorageEngineFactory_Open_
+  commentId: Overload:ObjectOrientedDB.FileStorage.FileStorageEngineFactory.Open
+  isSpec: "True"
+  fullName: ObjectOrientedDB.FileStorage.FileStorageEngineFactory.Open
+  nameWithType: FileStorageEngineFactory.Open
+- uid: ObjectOrientedDB.FlatBuffers
+  name: ObjectOrientedDB.FlatBuffers
+  href: api/ObjectOrientedDB.FlatBuffers.html
+  commentId: N:ObjectOrientedDB.FlatBuffers
+  fullName: ObjectOrientedDB.FlatBuffers
+  nameWithType: ObjectOrientedDB.FlatBuffers
+- uid: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer
+  name: FlatBufferSerializer
+  href: api/ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.html
+  commentId: T:ObjectOrientedDB.FlatBuffers.FlatBufferSerializer
+  fullName: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer
+  nameWithType: FlatBufferSerializer
+- uid: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.#ctor(List{Func{FlatBuffers.ByteBuffer,FlatBuffers.IFlatbufferObject}})
+  name: FlatBufferSerializer(List<Func<ByteBuffer, IFlatbufferObject>>)
+  href: api/ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.html#ObjectOrientedDB_FlatBuffers_FlatBufferSerializer__ctor_List_Func_FlatBuffers_ByteBuffer_FlatBuffers_IFlatbufferObject___
+  commentId: M:ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.#ctor(List{Func{FlatBuffers.ByteBuffer,FlatBuffers.IFlatbufferObject}})
+  name.vb: FlatBufferSerializer(List(Of Func(Of ByteBuffer, IFlatbufferObject)))
+  fullName: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.FlatBufferSerializer(List<Func<FlatBuffers.ByteBuffer, FlatBuffers.IFlatbufferObject>>)
+  fullName.vb: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.FlatBufferSerializer(List(Of Func(Of FlatBuffers.ByteBuffer, FlatBuffers.IFlatbufferObject)))
+  nameWithType: FlatBufferSerializer.FlatBufferSerializer(List<Func<ByteBuffer, IFlatbufferObject>>)
+  nameWithType.vb: FlatBufferSerializer.FlatBufferSerializer(List(Of Func(Of ByteBuffer, IFlatbufferObject)))
+- uid: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.#ctor*
+  name: FlatBufferSerializer
+  href: api/ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.html#ObjectOrientedDB_FlatBuffers_FlatBufferSerializer__ctor_
+  commentId: Overload:ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.#ctor
+  isSpec: "True"
+  fullName: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.FlatBufferSerializer
+  nameWithType: FlatBufferSerializer.FlatBufferSerializer
+- uid: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.Deserialize*
+  name: Deserialize
+  href: api/ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.html#ObjectOrientedDB_FlatBuffers_FlatBufferSerializer_Deserialize_
+  commentId: Overload:ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.Deserialize
+  isSpec: "True"
+  fullName: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.Deserialize
+  nameWithType: FlatBufferSerializer.Deserialize
+- uid: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.Deserialize``1(System.Byte[])
+  name: Deserialize<D>(Byte[])
+  href: api/ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.html#ObjectOrientedDB_FlatBuffers_FlatBufferSerializer_Deserialize__1_System_Byte___
+  commentId: M:ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.Deserialize``1(System.Byte[])
+  name.vb: Deserialize(Of D)(Byte())
+  fullName: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.Deserialize<D>(System.Byte[])
+  fullName.vb: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.Deserialize(Of D)(System.Byte())
+  nameWithType: FlatBufferSerializer.Deserialize<D>(Byte[])
+  nameWithType.vb: FlatBufferSerializer.Deserialize(Of D)(Byte())
+- uid: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.Serialize(FlatBuffers.IFlatbufferObject)
+  name: Serialize(IFlatbufferObject)
+  href: api/ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.html#ObjectOrientedDB_FlatBuffers_FlatBufferSerializer_Serialize_FlatBuffers_IFlatbufferObject_
+  commentId: M:ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.Serialize(FlatBuffers.IFlatbufferObject)
+  fullName: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.Serialize(FlatBuffers.IFlatbufferObject)
+  nameWithType: FlatBufferSerializer.Serialize(IFlatbufferObject)
+- uid: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.Serialize*
+  name: Serialize
+  href: api/ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.html#ObjectOrientedDB_FlatBuffers_FlatBufferSerializer_Serialize_
+  commentId: Overload:ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.Serialize
+  isSpec: "True"
+  fullName: ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.Serialize
+  nameWithType: FlatBufferSerializer.Serialize
+- uid: ObjectOrientedDB.ObjectDB`1
+  name: ObjectDB<TGroup>
+  href: api/ObjectOrientedDB.ObjectDB-1.html
+  commentId: T:ObjectOrientedDB.ObjectDB`1
+  name.vb: ObjectDB(Of TGroup)
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup)
+  nameWithType: ObjectDB<TGroup>
+  nameWithType.vb: ObjectDB(Of TGroup)
+- uid: ObjectOrientedDB.ObjectDB`1.#ctor(ObjectOrientedDB.StorageEngine,ObjectOrientedDB.Serializer{`0},ObjectOrientedDB.ObjectDB{`0}.GuidProvider)
+  name: ObjectDB(StorageEngine, Serializer<TGroup>, ObjectDB<TGroup>.GuidProvider)
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1__ctor_ObjectOrientedDB_StorageEngine_ObjectOrientedDB_Serializer__0__ObjectOrientedDB_ObjectDB__0__GuidProvider_
+  commentId: M:ObjectOrientedDB.ObjectDB`1.#ctor(ObjectOrientedDB.StorageEngine,ObjectOrientedDB.Serializer{`0},ObjectOrientedDB.ObjectDB{`0}.GuidProvider)
+  name.vb: ObjectDB(StorageEngine, Serializer(Of TGroup), ObjectDB(Of TGroup).GuidProvider)
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.ObjectDB(ObjectOrientedDB.StorageEngine, ObjectOrientedDB.Serializer<TGroup>, ObjectOrientedDB.ObjectDB<TGroup>.GuidProvider)
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).ObjectDB(ObjectOrientedDB.StorageEngine, ObjectOrientedDB.Serializer(Of TGroup), ObjectOrientedDB.ObjectDB(Of TGroup).GuidProvider)
+  nameWithType: ObjectDB<TGroup>.ObjectDB(StorageEngine, Serializer<TGroup>, ObjectDB<TGroup>.GuidProvider)
+  nameWithType.vb: ObjectDB(Of TGroup).ObjectDB(StorageEngine, Serializer(Of TGroup), ObjectDB(Of TGroup).GuidProvider)
+- uid: ObjectOrientedDB.ObjectDB`1.#ctor*
+  name: ObjectDB
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1__ctor_
+  commentId: Overload:ObjectOrientedDB.ObjectDB`1.#ctor
+  isSpec: "True"
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.ObjectDB
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).ObjectDB
+  nameWithType: ObjectDB<TGroup>.ObjectDB
+  nameWithType.vb: ObjectDB(Of TGroup).ObjectDB
+- uid: ObjectOrientedDB.ObjectDB`1.Delete(Guid)
+  name: Delete(Guid)
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Delete_Guid_
+  commentId: M:ObjectOrientedDB.ObjectDB`1.Delete(Guid)
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Delete(Guid)
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Delete(Guid)
+  nameWithType: ObjectDB<TGroup>.Delete(Guid)
+  nameWithType.vb: ObjectDB(Of TGroup).Delete(Guid)
+- uid: ObjectOrientedDB.ObjectDB`1.Delete*
+  name: Delete
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Delete_
+  commentId: Overload:ObjectOrientedDB.ObjectDB`1.Delete
+  isSpec: "True"
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Delete
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Delete
+  nameWithType: ObjectDB<TGroup>.Delete
+  nameWithType.vb: ObjectDB(Of TGroup).Delete
+- uid: ObjectOrientedDB.ObjectDB`1.Dispose
+  name: Dispose()
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Dispose
+  commentId: M:ObjectOrientedDB.ObjectDB`1.Dispose
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Dispose()
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Dispose()
+  nameWithType: ObjectDB<TGroup>.Dispose()
+  nameWithType.vb: ObjectDB(Of TGroup).Dispose()
+- uid: ObjectOrientedDB.ObjectDB`1.Dispose*
+  name: Dispose
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Dispose_
+  commentId: Overload:ObjectOrientedDB.ObjectDB`1.Dispose
+  isSpec: "True"
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Dispose
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Dispose
+  nameWithType: ObjectDB<TGroup>.Dispose
+  nameWithType.vb: ObjectDB(Of TGroup).Dispose
+- uid: ObjectOrientedDB.ObjectDB`1.GuidProvider
+  name: ObjectDB<TGroup>.GuidProvider
+  href: api/ObjectOrientedDB.ObjectDB-1.GuidProvider.html
+  commentId: T:ObjectOrientedDB.ObjectDB`1.GuidProvider
+  name.vb: ObjectDB(Of TGroup).GuidProvider
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.GuidProvider
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).GuidProvider
+  nameWithType: ObjectDB<TGroup>.GuidProvider
+  nameWithType.vb: ObjectDB(Of TGroup).GuidProvider
+- uid: ObjectOrientedDB.ObjectDB`1.Insert(`0)
+  name: Insert(TGroup)
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Insert__0_
+  commentId: M:ObjectOrientedDB.ObjectDB`1.Insert(`0)
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Insert(TGroup)
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Insert(TGroup)
+  nameWithType: ObjectDB<TGroup>.Insert(TGroup)
+  nameWithType.vb: ObjectDB(Of TGroup).Insert(TGroup)
+- uid: ObjectOrientedDB.ObjectDB`1.Insert*
+  name: Insert
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Insert_
+  commentId: Overload:ObjectOrientedDB.ObjectDB`1.Insert
+  isSpec: "True"
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Insert
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Insert
+  nameWithType: ObjectDB<TGroup>.Insert
+  nameWithType.vb: ObjectDB(Of TGroup).Insert
+- uid: ObjectOrientedDB.ObjectDB`1.Read*
+  name: Read
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Read_
+  commentId: Overload:ObjectOrientedDB.ObjectDB`1.Read
+  isSpec: "True"
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Read
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Read
+  nameWithType: ObjectDB<TGroup>.Read
+  nameWithType.vb: ObjectDB(Of TGroup).Read
+- uid: ObjectOrientedDB.ObjectDB`1.Read``1(Guid)
+  name: Read<T>(Guid)
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Read__1_Guid_
+  commentId: M:ObjectOrientedDB.ObjectDB`1.Read``1(Guid)
+  name.vb: Read(Of T)(Guid)
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Read<T>(Guid)
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Read(Of T)(Guid)
+  nameWithType: ObjectDB<TGroup>.Read<T>(Guid)
+  nameWithType.vb: ObjectDB(Of TGroup).Read(Of T)(Guid)
+- uid: ObjectOrientedDB.ObjectDB`1.Update(Guid,`0)
+  name: Update(Guid, TGroup)
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Update_Guid__0_
+  commentId: M:ObjectOrientedDB.ObjectDB`1.Update(Guid,`0)
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Update(Guid, TGroup)
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Update(Guid, TGroup)
+  nameWithType: ObjectDB<TGroup>.Update(Guid, TGroup)
+  nameWithType.vb: ObjectDB(Of TGroup).Update(Guid, TGroup)
+- uid: ObjectOrientedDB.ObjectDB`1.Update*
+  name: Update
+  href: api/ObjectOrientedDB.ObjectDB-1.html#ObjectOrientedDB_ObjectDB_1_Update_
+  commentId: Overload:ObjectOrientedDB.ObjectDB`1.Update
+  isSpec: "True"
+  fullName: ObjectOrientedDB.ObjectDB<TGroup>.Update
+  fullName.vb: ObjectOrientedDB.ObjectDB(Of TGroup).Update
+  nameWithType: ObjectDB<TGroup>.Update
+  nameWithType.vb: ObjectDB(Of TGroup).Update
+- uid: ObjectOrientedDB.RecordNotFoundException
+  name: RecordNotFoundException
+  href: api/ObjectOrientedDB.RecordNotFoundException.html
+  commentId: T:ObjectOrientedDB.RecordNotFoundException
+  fullName: ObjectOrientedDB.RecordNotFoundException
+  nameWithType: RecordNotFoundException
+- uid: ObjectOrientedDB.RecordNotFoundException.#ctor(System.String)
+  name: RecordNotFoundException(String)
+  href: api/ObjectOrientedDB.RecordNotFoundException.html#ObjectOrientedDB_RecordNotFoundException__ctor_System_String_
+  commentId: M:ObjectOrientedDB.RecordNotFoundException.#ctor(System.String)
+  fullName: ObjectOrientedDB.RecordNotFoundException.RecordNotFoundException(System.String)
+  nameWithType: RecordNotFoundException.RecordNotFoundException(String)
+- uid: ObjectOrientedDB.RecordNotFoundException.#ctor*
+  name: RecordNotFoundException
+  href: api/ObjectOrientedDB.RecordNotFoundException.html#ObjectOrientedDB_RecordNotFoundException__ctor_
+  commentId: Overload:ObjectOrientedDB.RecordNotFoundException.#ctor
+  isSpec: "True"
+  fullName: ObjectOrientedDB.RecordNotFoundException.RecordNotFoundException
+  nameWithType: RecordNotFoundException.RecordNotFoundException
+- uid: ObjectOrientedDB.Serializer`1
+  name: Serializer<T>
+  href: api/ObjectOrientedDB.Serializer-1.html
+  commentId: T:ObjectOrientedDB.Serializer`1
+  name.vb: Serializer(Of T)
+  fullName: ObjectOrientedDB.Serializer<T>
+  fullName.vb: ObjectOrientedDB.Serializer(Of T)
+  nameWithType: Serializer<T>
+  nameWithType.vb: Serializer(Of T)
+- uid: ObjectOrientedDB.Serializer`1.Deserialize*
+  name: Deserialize
+  href: api/ObjectOrientedDB.Serializer-1.html#ObjectOrientedDB_Serializer_1_Deserialize_
+  commentId: Overload:ObjectOrientedDB.Serializer`1.Deserialize
+  isSpec: "True"
+  fullName: ObjectOrientedDB.Serializer<T>.Deserialize
+  fullName.vb: ObjectOrientedDB.Serializer(Of T).Deserialize
+  nameWithType: Serializer<T>.Deserialize
+  nameWithType.vb: Serializer(Of T).Deserialize
+- uid: ObjectOrientedDB.Serializer`1.Deserialize``1(System.Byte[])
+  name: Deserialize<D>(Byte[])
+  href: api/ObjectOrientedDB.Serializer-1.html#ObjectOrientedDB_Serializer_1_Deserialize__1_System_Byte___
+  commentId: M:ObjectOrientedDB.Serializer`1.Deserialize``1(System.Byte[])
+  name.vb: Deserialize(Of D)(Byte())
+  fullName: ObjectOrientedDB.Serializer<T>.Deserialize<D>(System.Byte[])
+  fullName.vb: ObjectOrientedDB.Serializer(Of T).Deserialize(Of D)(System.Byte())
+  nameWithType: Serializer<T>.Deserialize<D>(Byte[])
+  nameWithType.vb: Serializer(Of T).Deserialize(Of D)(Byte())
+- uid: ObjectOrientedDB.Serializer`1.Serialize(`0)
+  name: Serialize(T)
+  href: api/ObjectOrientedDB.Serializer-1.html#ObjectOrientedDB_Serializer_1_Serialize__0_
+  commentId: M:ObjectOrientedDB.Serializer`1.Serialize(`0)
+  fullName: ObjectOrientedDB.Serializer<T>.Serialize(T)
+  fullName.vb: ObjectOrientedDB.Serializer(Of T).Serialize(T)
+  nameWithType: Serializer<T>.Serialize(T)
+  nameWithType.vb: Serializer(Of T).Serialize(T)
+- uid: ObjectOrientedDB.Serializer`1.Serialize*
+  name: Serialize
+  href: api/ObjectOrientedDB.Serializer-1.html#ObjectOrientedDB_Serializer_1_Serialize_
+  commentId: Overload:ObjectOrientedDB.Serializer`1.Serialize
+  isSpec: "True"
+  fullName: ObjectOrientedDB.Serializer<T>.Serialize
+  fullName.vb: ObjectOrientedDB.Serializer(Of T).Serialize
+  nameWithType: Serializer<T>.Serialize
+  nameWithType.vb: Serializer(Of T).Serialize
+- uid: ObjectOrientedDB.StorageEngine
+  name: StorageEngine
+  href: api/ObjectOrientedDB.StorageEngine.html
+  commentId: T:ObjectOrientedDB.StorageEngine
+  fullName: ObjectOrientedDB.StorageEngine
+  nameWithType: StorageEngine
+- uid: ObjectOrientedDB.StorageEngine.Delete(Guid)
+  name: Delete(Guid)
+  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Delete_Guid_
+  commentId: M:ObjectOrientedDB.StorageEngine.Delete(Guid)
+  fullName: ObjectOrientedDB.StorageEngine.Delete(Guid)
+  nameWithType: StorageEngine.Delete(Guid)
+- uid: ObjectOrientedDB.StorageEngine.Delete*
+  name: Delete
+  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Delete_
+  commentId: Overload:ObjectOrientedDB.StorageEngine.Delete
+  isSpec: "True"
+  fullName: ObjectOrientedDB.StorageEngine.Delete
+  nameWithType: StorageEngine.Delete
+- uid: ObjectOrientedDB.StorageEngine.Insert(Guid,System.Byte[])
+  name: Insert(Guid, Byte[])
+  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Insert_Guid_System_Byte___
+  commentId: M:ObjectOrientedDB.StorageEngine.Insert(Guid,System.Byte[])
+  name.vb: Insert(Guid, Byte())
+  fullName: ObjectOrientedDB.StorageEngine.Insert(Guid, System.Byte[])
+  fullName.vb: ObjectOrientedDB.StorageEngine.Insert(Guid, System.Byte())
+  nameWithType: StorageEngine.Insert(Guid, Byte[])
+  nameWithType.vb: StorageEngine.Insert(Guid, Byte())
+- uid: ObjectOrientedDB.StorageEngine.Insert*
+  name: Insert
+  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Insert_
+  commentId: Overload:ObjectOrientedDB.StorageEngine.Insert
+  isSpec: "True"
+  fullName: ObjectOrientedDB.StorageEngine.Insert
+  nameWithType: StorageEngine.Insert
+- uid: ObjectOrientedDB.StorageEngine.Read(Guid)
+  name: Read(Guid)
+  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Read_Guid_
+  commentId: M:ObjectOrientedDB.StorageEngine.Read(Guid)
+  fullName: ObjectOrientedDB.StorageEngine.Read(Guid)
+  nameWithType: StorageEngine.Read(Guid)
+- uid: ObjectOrientedDB.StorageEngine.Read*
+  name: Read
+  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Read_
+  commentId: Overload:ObjectOrientedDB.StorageEngine.Read
+  isSpec: "True"
+  fullName: ObjectOrientedDB.StorageEngine.Read
+  nameWithType: StorageEngine.Read
+- uid: ObjectOrientedDB.StorageEngine.Update(Guid,System.Byte[])
+  name: Update(Guid, Byte[])
+  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Update_Guid_System_Byte___
+  commentId: M:ObjectOrientedDB.StorageEngine.Update(Guid,System.Byte[])
+  name.vb: Update(Guid, Byte())
+  fullName: ObjectOrientedDB.StorageEngine.Update(Guid, System.Byte[])
+  fullName.vb: ObjectOrientedDB.StorageEngine.Update(Guid, System.Byte())
+  nameWithType: StorageEngine.Update(Guid, Byte[])
+  nameWithType.vb: StorageEngine.Update(Guid, Byte())
+- uid: ObjectOrientedDB.StorageEngine.Update*
+  name: Update
+  href: api/ObjectOrientedDB.StorageEngine.html#ObjectOrientedDB_StorageEngine_Update_
+  commentId: Overload:ObjectOrientedDB.StorageEngine.Update
+  isSpec: "True"
+  fullName: ObjectOrientedDB.StorageEngine.Update
+  nameWithType: StorageEngine.Update
