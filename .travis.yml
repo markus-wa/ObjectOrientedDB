@@ -9,7 +9,6 @@ git:
 
 script:
 - dotnet build
-- dotnet test
 
 deploy:
   provider: pages
