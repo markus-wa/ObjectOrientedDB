@@ -1,5 +1,6 @@
 language: csharp
 dist: bionic
+sudo: true
 mono: none
 dotnet: 2.2
 solution: ObjectOrientedDB.sln
