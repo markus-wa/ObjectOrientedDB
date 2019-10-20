@@ -23,7 +23,7 @@ deploy:
   script:
     - curl -L -o nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
     - export NUGET='mono nuget.exe'
-    - $NUGET pack ./ObjectOrientedDB/ObjectOrientedDB.nuspec
+    - $NUGET pack ./ObjectOrientedDB/ObjectOrientedDB.nuspec -Version $TRAVIS_TAG
     - $NUGET push ObjectOrientedDB/bin/Release/ObjectOrientedDB.*.nupkg -k $NUGET_API_KEY -s $NUGET_SOURCE
   on:
     tags: true
