@@ -1,22 +1,4 @@
-# ObjectOrientedDB
-
-## Description
-ObjectOrientedDB is a library for creating simple, object-oriented database instances in C#.
-
-## Disclaimer
-This was developed as part of a graduation project at [TEKO](https://www.teko.ch/de) and is intended for academic purposes only.
-
-Do not use this for any production software.
-
-## Quick Start Notes:
-1. Install the latest version of the library from NuGet: https://www.nuget.org/packages/ObjectOrientedDB/
-2. Create or open a database
-3. Insert, read, update or delete data
-
-## Example
-
-```c#
-using ObjectOrientedDB;
+﻿using ObjectOrientedDB;
 using ObjectOrientedDB.FileStorage;
 using System;
 
@@ -95,4 +77,3 @@ namespace Example
         }
     }
 }
-```

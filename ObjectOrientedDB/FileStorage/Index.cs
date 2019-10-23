@@ -9,7 +9,7 @@ namespace ObjectOrientedDB.FileStorage
     {
         IndexEntry Find(Guid guid);
         Task Insert(Guid guid, long dataOffset, long dataSize);
-        void Update(Guid guid, long newDataOffset);
+        void Update(Guid guid, long newDataOffset, long newDataLength);
         IndexEntry Delete(Guid guid);
     }
 
@@ -156,18 +156,18 @@ namespace ObjectOrientedDB.FileStorage
             }
         }
 
-        public void Update(Guid guid, long newDataOffset)
+        public void Update(Guid guid, long newDataOffset, long newDataLength)
         {
-            UpdateInternal(guid, newDataOffset);
+            UpdateInternal(guid, newDataOffset, newDataLength);
         }
 
         public IndexEntry Delete(Guid guid)
         {
             // DataOffset -1 = deleted
-            return UpdateInternal(guid, -1);
+            return UpdateInternal(guid, -1, -1);
         }
 
-        private IndexEntry UpdateInternal(Guid guid, long newDataOffset)
+        private IndexEntry UpdateInternal(Guid guid, long newDataOffset, long newDataLength)
         {
             var closestMatch = ClosestNode(guid);
             var bstNode = closestMatch.Item1;
@@ -179,6 +179,12 @@ namespace ObjectOrientedDB.FileStorage
             }
 
             bstNode.DataOffset = newDataOffset;
+
+            // -1 means delete, don't update DataSize in that case
+            if (newDataLength != -1)
+            {
+                bstNode.DataSize = newDataLength;
+            }
 
             using (var indexAccessor = file.CreateViewAccessor(bstPosition + offset, 0))
             {
