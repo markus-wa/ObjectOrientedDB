@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>This is the HOMEPAGE. </title>
+    <title>ObjectOrientedDB </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="This is the HOMEPAGE. ">
+    <meta name="title" content="ObjectOrientedDB ">
     <meta name="generator" content="docfx 2.46.0.0">
     
     <link rel="shortcut icon" href="favicon.ico">
@@ -60,13 +60,100 @@
         <div class="article row grid">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="this-is-the-homepage">This is the <strong>HOMEPAGE</strong>.</h1>
+<h1 id="objectorienteddb">ObjectOrientedDB</h1>
 
-<p>Refer to <a href="http://daringfireball.net/projects/markdown/">Markdown</a> for how to write markdown files.</p>
+<h2 id="description">Description</h2>
+<p>ObjectOrientedDB is a library for creating simple, object-oriented database instances in C#.</p>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>This was developed as part of a graduation project at <a href="https://www.teko.ch/de">TEKO</a> and is intended for academic purposes only.</p>
+<p>Do not use this for any production software.</p>
 <h2 id="quick-start-notes">Quick Start Notes:</h2>
 <ol>
-<li>Add images to the <em>images</em> folder if the file is referencing an image.</li>
+<li>Install the latest version of the library from NuGet: <a href="https://www.nuget.org/packages/ObjectOrientedDB/">https://www.nuget.org/packages/ObjectOrientedDB/</a></li>
+<li>Create or open a database</li>
+<li>Insert, read, update or delete data</li>
 </ol>
+<h2 id="example">Example</h2>
+<pre><code class="lang-c#">using ObjectOrientedDB;
+using ObjectOrientedDB.FileStorage;
+using System;
+
+namespace Example
+{
+    class Program
+    {
+        const long SIZE_1G = 1L * 1024 * 1024 * 1024;
+        const long MAX_ENTRIES = 1_000_000;
+
+        static void Main(string[] args)
+        {
+            Guid guid;
+
+            // create a database
+            var pathToDataDir = &quot;db-data&quot;;
+            var fileStorageEngine = FileStorageEngineFactory.Create(pathToDataDir, SIZE_1G, MAX_ENTRIES);
+            using (var db = new ObjectDB&lt;object&gt;(fileStorageEngine, new BinaryFormatterSerializer()))
+            {
+                // create
+                var data = new MyData(1, &quot;hello world&quot;);
+                Console.WriteLine(&quot;inserting object: &quot; + data);
+                guid = db.Insert(data);
+                Console.WriteLine(&quot;GUID of inserted object={0}&quot;, guid);
+
+                // read
+                data = db.Read&lt;MyData&gt;(guid);
+                Console.WriteLine(&quot;read object: {0}&quot;, data);
+
+                // update
+                data.Text = &quot;very interesting text&quot;;
+                Console.WriteLine(&quot;updating object: {0}&quot;, data);
+                db.Update(guid, data);
+            }
+
+            // re-open existing databse
+            using (var db = new ObjectDB&lt;object&gt;(FileStorageEngineFactory.Open(pathToDataDir), new BinaryFormatterSerializer()))
+            {
+                // read after re-opening the db
+                var data = db.Read&lt;MyData&gt;(guid);
+                Console.WriteLine(&quot;object after re-opening the DB: {0}&quot;, data);
+
+                // delete
+                Console.WriteLine(&quot;deleting object&quot;);
+                db.Delete(guid);
+
+                // RecordNotFoundException after deletion
+                try
+                {
+                    db.Read&lt;MyData&gt;(guid);
+                }
+                catch (RecordNotFoundException)
+                {
+                    Console.WriteLine(&quot;object was deleted&quot;);
+                }
+            }
+        }
+    }
+
+    [Serializable]
+    internal class MyData
+    {
+        public int Id { get; set; }
+        public string Text { get; set; }
+
+        public MyData(int Id, string Text)
+        {
+            this.Id = Id;
+            this.Text = Text;
+        }
+
+        override public string ToString()
+        {
+
+            return String.Format(&quot;Data[id={0}, text='{1}']&quot;, Id, Text);
+        }
+    }
+}
+</code></pre>
 </article>
           </div>
           
@@ -75,7 +162,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/markus-wa/ObjectOrientedDB/blob/f328143aa16c8e78e48bc85df51862e237b0bf65/ObjectOrientedDB/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/markus-wa/ObjectOrientedDB/blob/e622bd480bd36a33e47d5c71f6972113734153dc/ObjectOrientedDB/index.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

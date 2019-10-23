@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.BinaryFormatterSerializer.html",
-          "hash": "tA5WlG68CoJWdMroBjhZFQ=="
+          "hash": "HXA1ct0B0cUqb3XyCuegiw=="
         }
       },
       "is_incremental": false,
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.FileStorage.FileStorageEngine.html",
-          "hash": "7nSAhZJcXyC2xWbAoSp0nA=="
+          "hash": "jbl57dZycr6J2JApWBXTyw=="
         }
       },
       "is_incremental": false,
@@ -33,7 +33,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.FileStorage.FileStorageEngineFactory.html",
-          "hash": "owgLsWM0K0zNj8CiWAuFjg=="
+          "hash": "lUwxV/ZabiyqMrGHwCkhTQ=="
         }
       },
       "is_incremental": false,
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.FlatBuffers.FlatBufferSerializer.html",
-          "hash": "bzyEg5qcLZghkMtB1MMX+Q=="
+          "hash": "aO0goXWVskueAp371Ycx8w=="
         }
       },
       "is_incremental": false,
@@ -81,7 +81,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.ObjectDB-1.GuidProvider.html",
-          "hash": "N4N41pgee9E0XgKPU3E/BA=="
+          "hash": "32cVcxwJWq1LaG9ujnzqIA=="
         }
       },
       "is_incremental": false,
@@ -93,7 +93,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.ObjectDB-1.html",
-          "hash": "DzguLQFBGpwnpbU3w4FVUg=="
+          "hash": "5SESDoaiZoXo3CNcwqzoaA=="
         }
       },
       "is_incremental": false,
@@ -105,7 +105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.RecordNotFoundException.html",
-          "hash": "yqR20yAq5TlVlzlTTIYGow=="
+          "hash": "yKf/c1sHio1aM7quAlND1w=="
         }
       },
       "is_incremental": false,
@@ -117,7 +117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.Serializer-1.html",
-          "hash": "ZYIjGCHwDdin7xjaYsJIiQ=="
+          "hash": "vNyNRf5kjthXexsaCtRUYQ=="
         }
       },
       "is_incremental": false,
@@ -129,7 +129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/ObjectOrientedDB.StorageEngine.html",
-          "hash": "Rq4nhbEegCJ7Dz8y8kvhtA=="
+          "hash": "5ZfRs5BFNsUwcHliCRzjPA=="
         }
       },
       "is_incremental": false,
@@ -153,7 +153,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "lHyKY1CbJOCQr+p/UBUHQQ=="
+          "hash": "ng3TXwGmiNJCVsZ9fUmnLg=="
         }
       },
       "is_incremental": false,
@@ -173,35 +173,11 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/intro.md",
-      "output": {
-        ".html": {
-          "relative_path": "articles/intro.html",
-          "hash": "Su7ov9b5EjvJG0yq683X4Q=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Toc",
-      "source_relative_path": "articles/toc.yml",
-      "output": {
-        ".html": {
-          "relative_path": "articles/toc.html",
-          "hash": "t7iiFrmuYmrKWisdq+lN6Q=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "+Gm51l37p/ftu6UMYDVStg=="
+          "hash": "+cNEUTpXaJrIGrKf0rri0g=="
         }
       },
       "is_incremental": false,
@@ -213,7 +189,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "ufGCB69+WbYEtmHecW6Osg=="
+          "hash": "G4J2hsMAK0rASZfIEDt2gA=="
         }
       },
       "is_incremental": false,
@@ -238,16 +214,16 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 2,
+          "skipped_file_count": 0
+        },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 12,
-          "skipped_file_count": 0
-        },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 3,
           "skipped_file_count": 0
         }
       }
