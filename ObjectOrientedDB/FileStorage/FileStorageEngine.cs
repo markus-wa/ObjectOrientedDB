@@ -56,7 +56,7 @@ namespace ObjectOrientedDB.FileStorage
             var newDataOffset = insertDataResult.Item1;
             var flushDataTask = insertDataResult.Item2;
 
-            index.Update(guid, newDataOffset);
+            index.Update(guid, newDataOffset, data.Length);
             flushDataTask.Wait();
         }
 

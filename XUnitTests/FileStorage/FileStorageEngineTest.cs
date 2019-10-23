@@ -140,5 +140,22 @@ namespace ObjectOrientedDB.FileStorage
                 }
             }
         }
+
+        [Fact]
+        public void StoreUpdateRead()
+        {
+            using (var engine = FileStorageEngineFactory.NewInstance(MemoryMappedFile.CreateNew("index", SIZE_1MB), MemoryMappedFile.CreateNew("data", SIZE_1MB)))
+            {
+                var input = new byte[] { 1, 2, 3, 4 };
+                var guid = Guid.NewGuid();
+                engine.Insert(guid, input);
+
+                input = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+                engine.Update(guid, input);
+                var output = engine.Read(guid);
+
+                Assert.Equal(input, output);
+            }
+        }
     }
 }
