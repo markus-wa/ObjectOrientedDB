@@ -75,3 +75,8 @@
  Benchmarks.Benchmarks.Update_100_At_0(dataIndex: 3)           | Duration | msec |     8      | 653.486 |   4.326 | 648.259 | 661.940
  Benchmarks.Benchmarks.Update_100_At_10_000(dataIndex: 3)      | Duration | msec |     8      | 661.265 |   4.319 | 658.204 | 671.186
  
+ 
+ Benchmarks.Db4oBenchmarks.Delete_1kb_100_At_10_000            | Duration | msec |     13     |   554.384 |     36.836 |   510.665 |   623.078
+ Benchmarks.Db4oBenchmarks.Insert_1kb_100_At_10_000            | Duration | msec |     10     |  1004.823 |     30.444 |   960.595 |  1051.393
+ Benchmarks.Db4oBenchmarks.Read_1kb_100_At_0                   | Duration | msec |     1      | 10057.739 |        NaN | 10057.739 | 10057.739
+ Benchmarks.Db4oBenchmarks.Update_1kb_100_At_10_000            | Duration | msec |     14     |   454.222 |     44.740 |   393.284 |   522.240
